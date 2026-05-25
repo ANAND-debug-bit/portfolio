@@ -1,4 +1,3 @@
-import React from 'react';
 import { FadeIn } from '../components/FadeIn';
 import { ContactButton } from '../components/Buttons';
 import { MouseFollow } from '../components/MouseFollow';

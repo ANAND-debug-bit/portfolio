@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FadeIn } from '../components/FadeIn';
 import { LiveProjectButton } from '../components/Buttons';
@@ -61,10 +61,11 @@ export const ProjectsSection = () => {
 
 const ProjectCard = ({ project, index, totalCards }: { project: any, index: number, totalCards: number }) => {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'start start']
-  });
+  
+  // const { scrollYProgress } = useScroll({
+  //   target: containerRef,
+  //   offset: ['start end', 'start start']
+  // });
 
   const { scrollYProgress: scrollYProgressLeave } = useScroll({
     target: containerRef,
