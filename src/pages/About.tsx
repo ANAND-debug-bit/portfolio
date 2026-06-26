@@ -236,8 +236,8 @@ const events: TimelineEventData[] = [
   },
   {
     year: "Current",
-    title: "Building For Fun",
-    description: "I enjoy building projects for fun, experimenting with new ideas, and learning more about AI.",
+    title: "Building Projects",
+    description: "I enjoy building projects, experimenting with new ideas, and learning more about AI.",
   }
 ];
 

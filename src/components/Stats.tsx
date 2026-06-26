@@ -1,16 +1,15 @@
 import { motion } from 'framer-motion';
 
 const stats = [
-  { value: "20+", label: "Years Experience" },
-  { value: "95+", label: "Projects Done" },
-  { value: "200%", label: "Satisfied Clients" },
+  { value: "15", label: "Years Old" },
+  { value: "9+", label: "Projects Done" },
 ];
 
 export default function Stats() {
   return (
     <section className="bg-bg py-16 md:py-32 border-t border-stroke/50">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-stroke">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-stroke">
           {stats.map((stat, i) => (
             <motion.div 
               key={stat.label}
