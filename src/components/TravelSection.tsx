@@ -136,7 +136,7 @@ const TravelCard = ({
   return (
     <div
       ref={containerRef}
-      className="sticky top-24 flex h-[76vh] items-start justify-center md:top-32"
+      className="sticky top-20 flex h-[80svh] items-start justify-center md:top-32 md:h-[76vh]"
       style={{ zIndex: index }}
     >
       <motion.article
@@ -144,11 +144,11 @@ const TravelCard = ({
           scale,
           top: `${index * 18}px`,
         }}
-        className={`relative grid h-[min(640px,68vh)] w-full origin-top overflow-hidden rounded-[32px] border border-stroke bg-surface/40 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-colors duration-500 hover:bg-surface/55 md:rounded-[40px] md:p-7 lg:p-8 ${hasImages ? 'gap-5 md:grid-cols-[0.76fr_1.24fr]' : 'md:grid-cols-1'}`}
+        className={`relative grid h-[min(660px,72svh)] w-full origin-top grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[32px] border border-stroke bg-surface/40 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-colors duration-500 hover:bg-surface/55 md:h-[min(640px,68vh)] md:grid-rows-none md:rounded-[40px] md:p-7 lg:p-8 ${hasImages ? 'gap-4 md:grid-cols-[0.76fr_1.24fr] md:gap-5' : 'md:grid-cols-1'}`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(137,170,204,0.16),transparent_32%),radial-gradient(circle_at_85%_100%,rgba(78,133,191,0.12),transparent_34%)]" />
 
-        <div className="relative z-10 flex min-h-0 flex-col justify-between gap-8">
+        <div className="relative z-10 flex min-h-0 flex-col justify-between gap-6 md:gap-8">
           <span className="font-body text-sm font-medium uppercase tracking-[0.35em] text-muted">
             Trip {trip.num}
           </span>
@@ -168,11 +168,11 @@ const TravelCard = ({
         </div>
 
         {hasImages && (
-          <div className="relative z-10 grid min-h-0 grid-cols-2 gap-3 md:grid-cols-[1fr_0.72fr] md:grid-rows-2">
+          <div className="relative z-10 grid min-h-0 grid-cols-2 grid-rows-[minmax(0,1.35fr)_minmax(0,1fr)] gap-3 md:grid-cols-[1fr_0.72fr] md:grid-rows-2">
             {trip.images?.map((image, imageIndex) => (
               <div
                 key={image.src}
-                className={`overflow-hidden rounded-[24px] border border-stroke bg-bg/40 shadow-[0_18px_50px_rgba(0,0,0,0.28)] md:rounded-[30px] ${imageIndex === 0 ? 'col-span-2 h-44 md:col-span-1 md:row-span-2 md:h-full' : 'h-32 md:h-full'}`}
+                className={`min-h-0 overflow-hidden rounded-[24px] border border-stroke bg-bg/40 shadow-[0_18px_50px_rgba(0,0,0,0.28)] md:rounded-[30px] ${imageIndex === 0 ? 'col-span-2 md:col-span-1 md:row-span-2 md:h-full' : 'md:h-full'}`}
               >
                 <img
                   src={image.src}

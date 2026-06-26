@@ -104,9 +104,27 @@
   ::view-transition-new(root) {
     animation: none;
   }
+
+  .infinite-slider-track {
+    animation: none;
+  }
 }
 
 @layer utilities {
+  @keyframes infinite-slider-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - (var(--slider-gap) / 2))); }
+  }
+
+  .infinite-slider-track {
+    animation: infinite-slider-scroll var(--slider-duration) linear infinite;
+    will-change: transform;
+  }
+
+  .infinite-slider:hover .infinite-slider-track {
+    animation-duration: var(--slider-hover-duration);
+  }
+
   .hero-heading {
     background: linear-gradient(180deg, var(--hero-from) 0%, var(--hero-to) 100%);
     -webkit-background-clip: text;
