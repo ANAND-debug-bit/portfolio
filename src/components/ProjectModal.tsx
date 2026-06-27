@@ -22,6 +22,9 @@ export default function ProjectModal({
   // All images for the active project: cover first, then the rest.
   const images = project ? [projectImageSrc(project), ...(project.gallery ?? [])] : [];
   const [active, setActive] = useState(0);
+  // Wide web shots fill the frame (cover); tall phone shots fit inside
+  // (contain). We learn each image's shape once it loads.
+  const [isPortrait, setIsPortrait] = useState(false);
 
   // Reset the viewer to the cover whenever a different project opens.
   useEffect(() => {
@@ -76,7 +79,7 @@ export default function ProjectModal({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.98 }}
             transition={{ duration: 0.45, ease: EASE }}
-            className="relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-stroke bg-surface shadow-2xl sm:rounded-3xl"
+            className="relative z-10 flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-stroke bg-surface shadow-2xl sm:rounded-3xl"
           >
             {/* Close button */}
             <button
@@ -88,9 +91,9 @@ export default function ProjectModal({
               <X className="h-4 w-4" />
             </button>
 
-            {/* Media viewer (fixed) — contains the image with a blurred fill,
-                so wide web shots and tall phone shots both sit nicely. */}
-            <div className="relative h-56 w-full shrink-0 overflow-hidden bg-bg sm:h-64">
+            {/* Media viewer (fixed) — wide shots fill the frame, tall phone
+                shots sit centered over a blurred fill of themselves. */}
+            <div className="relative h-72 w-full shrink-0 overflow-hidden bg-bg sm:h-[22rem]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSrc}
@@ -100,16 +103,24 @@ export default function ProjectModal({
                   transition={{ duration: 0.25 }}
                   className="absolute inset-0"
                 >
-                  <img
-                    src={activeSrc}
-                    alt=""
-                    aria-hidden
-                    className="absolute inset-0 h-full w-full scale-110 object-cover opacity-40 blur-2xl"
-                  />
+                  {isPortrait && (
+                    <img
+                      src={activeSrc}
+                      alt=""
+                      aria-hidden
+                      className="absolute inset-0 h-full w-full scale-110 object-cover opacity-40 blur-2xl"
+                    />
+                  )}
                   <img
                     src={activeSrc}
                     alt={project.name}
-                    className="absolute inset-0 h-full w-full object-contain"
+                    onLoad={(e) =>
+                      setIsPortrait(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth)
+                    }
+                    className={cn(
+                      'absolute inset-0 h-full w-full',
+                      isPortrait ? 'object-contain' : 'object-cover object-top',
+                    )}
                   />
                 </motion.div>
               </AnimatePresence>
