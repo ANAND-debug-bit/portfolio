@@ -5,12 +5,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const explorations = [
-  { id: 1, image: "https://images.unsplash.com/photo-1614850715649-1d0106293bd1?q=80&w=2070&auto=format&fit=crop", rotation: -5, col: 1 },
-  { id: 2, image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop", rotation: 3, col: 2 },
-  { id: 3, image: "https://images.unsplash.com/photo-1550684376-efcbd6e3f031?q=80&w=2070&auto=format&fit=crop", rotation: 2, col: 1 },
-  { id: 4, image: "https://images.unsplash.com/photo-1604871000636-074fa5117945?q=80&w=2070&auto=format&fit=crop", rotation: -4, col: 2 },
-  { id: 5, image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop", rotation: -2, col: 1 },
-  { id: 6, image: "https://images.unsplash.com/photo-1614849963640-9b634863f60f?q=80&w=2000&auto=format&fit=crop", rotation: 5, col: 2 },
+  { id: 1, image: "/playground/coastal-lookout.jpg", alt: "Looking out over clear coastal water from the rocks", rotation: -5, col: 1 },
+  { id: 2, image: "/playground/city-overlook.jpg", alt: "Watching city lights from a high overlook at dusk", rotation: 3, col: 2 },
+  { id: 3, image: "/playground/img-1719.jpg", alt: "Travel photo from the visual playground", rotation: 2, col: 1 },
+  { id: 4, image: "/playground/img-1897.jpg", alt: "Travel memory from the visual playground", rotation: -4, col: 2 },
+  { id: 5, image: "/playground/img-2008.jpg", alt: "Scenic photo from the visual playground", rotation: -2, col: 1 },
+  { id: 6, image: "/playground/img-6479.jpg", alt: "Portrait moment from the visual playground", rotation: 5, col: 2 },
+  { id: 7, image: "/playground/img-7177.jpg", alt: "Landscape moment from the visual playground", rotation: -3, col: 1 },
 ];
 
 export default function Explorations() {
@@ -100,7 +101,7 @@ export default function Explorations() {
                 style={{ transform: `rotate(${item.rotation}deg)` }}
               >
                 <div className="w-full h-full rounded-2xl overflow-hidden relative group translate-z-0">
-                  <img src={item.image} alt="Exploration" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={item.image} alt={item.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="text-text-primary font-medium">View</span>
                   </div>
@@ -118,7 +119,7 @@ export default function Explorations() {
                 style={{ transform: `rotate(${item.rotation}deg)` }}
               >
                 <div className="w-full h-full rounded-2xl overflow-hidden relative group translate-z-0">
-                  <img src={item.image} alt="Exploration" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={item.image} alt={item.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="text-text-primary font-medium">View</span>
                   </div>
