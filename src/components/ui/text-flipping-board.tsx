@@ -28,11 +28,6 @@ const ACCENT_COLORS: AccentColor[] = [
   { top: "bg-[#89AACC]", bottom: "bg-[#6B93BF]", text: "text-neutral-900" },
 ];
 
-const CELL_TEXT_STYLE: React.CSSProperties = {
-  fontSize: "clamp(6px, 2vw, 22px)",
-  lineHeight: 1,
-};
-
 // ── Individual Split-Flap Character ───────────────────────────────────
 
 const FlapCell = React.memo(function FlapCell({
@@ -40,11 +35,13 @@ const FlapCell = React.memo(function FlapCell({
   delay,
   stepMs,
   flipDuration,
+  textStyle,
 }: {
   target: string;
   delay: number;
   stepMs: number;
   flipDuration: number;
+  textStyle: React.CSSProperties;
 }) {
   const [current, setCurrent] = useState(" ");
   const [prev, setPrev] = useState(" ");
@@ -145,7 +142,7 @@ const FlapCell = React.memo(function FlapCell({
         >
           <div
             className={cn(textCx, textColor, "top-0 h-[200%]")}
-            style={CELL_TEXT_STYLE}
+            style={textStyle}
           >
             {show}
           </div>
@@ -160,7 +157,7 @@ const FlapCell = React.memo(function FlapCell({
         >
           <div
             className={cn(textCx, textColor, "bottom-0 h-[200%]")}
-            style={CELL_TEXT_STYLE}
+            style={textStyle}
           >
             {show}
           </div>
@@ -192,7 +189,7 @@ const FlapCell = React.memo(function FlapCell({
           >
             <div
               className={cn(textCx, flapTextColor, "top-0 h-[200%]")}
-              style={CELL_TEXT_STYLE}
+              style={textStyle}
             >
               {showPrev}
             </div>
@@ -223,7 +220,7 @@ const FlapCell = React.memo(function FlapCell({
           >
             <div
               className={cn(textCx, textColor, "bottom-0 h-[200%]")}
-              style={CELL_TEXT_STYLE}
+              style={textStyle}
             >
               {show}
             </div>
@@ -252,7 +249,8 @@ const FlapCell = React.memo(function FlapCell({
   prevProps.target === nextProps.target &&
   prevProps.delay === nextProps.delay &&
   prevProps.stepMs === nextProps.stepMs &&
-  prevProps.flipDuration === nextProps.flipDuration,
+  prevProps.flipDuration === nextProps.flipDuration &&
+  prevProps.textStyle.fontSize === nextProps.textStyle.fontSize,
 );
 
 // ── Color Tile ────────────────────────────────────────────────────────
@@ -349,49 +347,80 @@ export interface TextFlippingBoardProps {
   duration?: number;
 }
 
+/**
+ * Fewer columns on small screens so each flap (and its glyph) stays large
+ * enough to read on a phone. Falls back to the full 22-wide board on desktop.
+ */
+function useResponsiveBoard() {
+  const [dims, setDims] = useState({ cols: BOARD_COLS, rows: BOARD_ROWS });
+
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      if (w < 480) setDims({ cols: 12, rows: 7 });
+      else if (w < 768) setDims({ cols: 16, rows: 6 });
+      else setDims({ cols: BOARD_COLS, rows: BOARD_ROWS });
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
+
+  return dims;
+}
+
 export function TextFlippingBoard({
   rows,
   text,
   className,
   duration = BASE_TOTAL_S,
 }: TextFlippingBoardProps) {
+  const { cols, rows: boardRows } = useResponsiveBoard();
+
   const scale = duration / BASE_TOTAL_S;
   const colDelay = BASE_COL_DELAY * scale;
   const rowDelay = BASE_ROW_DELAY * scale;
   const stepMs = BASE_STEP_MS * scale;
   const flipDur = Math.min(0.6, Math.max(0.15, BASE_FLIP_S * scale));
 
+  // Size the glyph from the actual cell width so it scales with the column
+  // count, not just the viewport.
+  const textStyle = useMemo<React.CSSProperties>(
+    () => ({
+      fontSize: `clamp(9px, calc(min(94vw, 760px) / ${cols} * 0.62), 24px)`,
+      lineHeight: 1,
+    }),
+    [cols],
+  );
+
   const board = useMemo(() => {
-    const grid: ParsedCell[][] = Array.from({ length: BOARD_ROWS }, () =>
-      Array.from({ length: BOARD_COLS }, () => ({
+    const grid: ParsedCell[][] = Array.from({ length: boardRows }, () =>
+      Array.from({ length: cols }, () => ({
         type: "char" as const,
         value: " ",
       })),
     );
 
     if (text) {
-      const lines = wrapText(text, BOARD_COLS).slice(0, BOARD_ROWS);
-      const startRow = Math.max(0, Math.floor((BOARD_ROWS - lines.length) / 2));
+      const lines = wrapText(text, cols).slice(0, boardRows);
+      const startRow = Math.max(0, Math.floor((boardRows - lines.length) / 2));
       lines.forEach((line, i) => {
         const row = startRow + i;
-        if (row >= BOARD_ROWS) return;
+        if (row >= boardRows) return;
         const parsed = parseRow(line);
-        const startCol = Math.max(
-          0,
-          Math.floor((BOARD_COLS - parsed.length) / 2),
-        );
+        const startCol = Math.max(0, Math.floor((cols - parsed.length) / 2));
         parsed.forEach((cell, c) => {
-          if (startCol + c < BOARD_COLS) {
+          if (startCol + c < cols) {
             grid[row][startCol + c] = cell;
           }
         });
       });
     } else if (rows) {
       rows.forEach((row, r) => {
-        if (r >= BOARD_ROWS) return;
+        if (r >= boardRows) return;
         const parsed = parseRow(row);
         parsed.forEach((cell, c) => {
-          if (c < BOARD_COLS) {
+          if (c < cols) {
             grid[r][c] = cell;
           }
         });
@@ -399,7 +428,7 @@ export function TextFlippingBoard({
     }
 
     return grid;
-  }, [rows, text]);
+  }, [rows, text, cols, boardRows]);
 
   return (
     <div
@@ -410,7 +439,7 @@ export function TextFlippingBoard({
     >
       <div
         className="grid gap-px md:gap-[3px]"
-        style={{ gridTemplateColumns: `repeat(${BOARD_COLS}, 1fr)` }}
+        style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
       >
         {board.map((row, r) =>
           row.map((cell, c) =>
@@ -423,6 +452,7 @@ export function TextFlippingBoard({
                 delay={c * colDelay + r * rowDelay}
                 stepMs={stepMs}
                 flipDuration={flipDur}
+                textStyle={textStyle}
               />
             ),
           ),
