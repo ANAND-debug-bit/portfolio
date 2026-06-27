@@ -10,12 +10,17 @@ import LoadingScreen from './components/LoadingScreen';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
 import ContactPage from './pages/Contact';
 
-// ScrollToTop component to reset scroll on route change
+// ScrollToTop component to reset scroll on route change. Lenis hijacks the
+// scroll position, so a plain window.scrollTo(0,0) gets ignored — we reset
+// the Lenis instance directly (and fall back to the window for safety).
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
+    const lenis = (window as any).__lenis;
+    if (lenis) lenis.scrollTo(0, { immediate: true });
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
@@ -43,7 +48,11 @@ function Layout({ children }: { children: React.ReactNode }) {
 
     requestAnimationFrame(raf);
 
+    // Expose so route changes can reset the scroll position (see ScrollToTop).
+    (window as any).__lenis = lenis;
+
     return () => {
+      (window as any).__lenis = null;
       lenis.destroy();
     };
   }, []);
@@ -72,6 +81,7 @@ export default function App() {
             <Route path="/" element={<Home isLoading={isLoading} />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </Layout>

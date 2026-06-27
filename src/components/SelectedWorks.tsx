@@ -16,7 +16,7 @@ const layout = [
 const projects = layout.flatMap(({ id, span, aspect }) => {
   const project = allProjects.find((p) => p.id === id);
   if (!project) return [];
-  return [{ title: project.name, span, aspect, image: projectImageSrc(project) }];
+  return [{ id: project.id, title: project.name, span, aspect, image: projectImageSrc(project) }];
 });
 
 export default function SelectedWorks() {
@@ -99,9 +99,9 @@ export default function SelectedWorks() {
 
               </div>
 
-              {/* Click-through to the full Projects page */}
+              {/* Click-through to the project's own page */}
               <Link
-                to="/projects"
+                to={`/projects/${project.id}`}
                 aria-label={`View ${project.title}`}
                 className="absolute inset-0 z-10"
               />

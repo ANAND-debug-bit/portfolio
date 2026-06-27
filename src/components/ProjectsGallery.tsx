@@ -1,16 +1,15 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import MagneticCard from './MagneticCard';
 import { projectImageSrc, type Project } from '../data/projects';
 
 function GalleryCard({
   project,
   index,
-  onSelect,
 }: {
   project: Project;
   index: number;
-  onSelect: (project: Project) => void;
 }) {
   const number = String(index + 1).padStart(2, '0');
 
@@ -65,9 +64,8 @@ function GalleryCard({
       <div className="absolute top-5 right-5 z-20 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full bg-text-primary text-bg opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
         <ArrowUpRight className="h-4 w-4" />
       </div>
-      <button
-        type="button"
-        onClick={() => onSelect(project)}
+      <Link
+        to={`/projects/${project.id}`}
         aria-label={`View ${project.name}`}
         className="absolute inset-0 z-30 cursor-pointer"
       />
@@ -80,10 +78,8 @@ function GalleryCard({
 
 export default function ProjectsGallery({
   projects,
-  onSelect,
 }: {
   projects: Project[];
-  onSelect: (project: Project) => void;
 }) {
   return (
     <motion.div
@@ -94,7 +90,7 @@ export default function ProjectsGallery({
       className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-3"
     >
       {projects.map((project, i) => (
-        <GalleryCard key={project.id} project={project} index={i} onSelect={onSelect} />
+        <GalleryCard key={project.id} project={project} index={i} />
       ))}
     </motion.div>
   );

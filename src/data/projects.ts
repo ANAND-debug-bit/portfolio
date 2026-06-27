@@ -132,12 +132,12 @@ export const projects: Project[] = [
     type: 'Mobile App',
     description: 'Daily Hinduism lessons that feel like a game, kind of like Duolingo but for dharma.',
     overview:
-      "Om Daily teaches people about Hinduism through small daily lessons, kind of like Duolingo but for dharma instead of languages. It started as a website with daily quotes from the Bhagavad Gita. You move through different paths like the Lotus Path or the Mountain Path, learning prayers, stories, and festival traditions as you go, and you earn Dharma Coins along the way for completing lessons. It is built to make learning your faith feel like a game instead of a chore.",
+      "Om Daily teaches people about Hinduism through small daily lessons, kind of like Duolingo but for dharma instead of languages. It started as a website with daily quotes from the Bhagavad Gita. You move through different paths like the Lotus Path or the Mountain Path, learning prayers, stories, and festival traditions as you go, and you earn Om Coins along the way for completing lessons. It is built to make learning your faith feel like a game instead of a chore.",
     highlights: [
-      'Small daily lessons, kind of like Duolingo but for dharma',
+      'Daily Quotes of the Bhagavad Gita',
       'Move through paths like the Lotus Path and the Mountain Path',
       'Learn prayers, stories, and festival traditions as you go',
-      'Earn Dharma Coins for completing lessons',
+      'Earn Om Coins for completing lessons',
       'Started as a website with daily Bhagavad Gita quotes, now a mobile app',
     ],
     tags: ['Mobile', 'Hinduism', 'Gamified'],
@@ -171,6 +171,13 @@ export const projects: Project[] = [
     ],
     tags: ['iOS', 'Swift', 'Apple HealthKit'],
     image: '/projects/medora.png',
+    gallery: [
+      '/projects/medora/1.png',
+      '/projects/medora/2.png',
+      '/projects/medora/3.png',
+      '/projects/medora/4.png',
+      '/projects/medora/5.png',
+    ],
     year: 'Jun 2026',
   },
 ];

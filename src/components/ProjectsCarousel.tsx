@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import DiagonalCarousel from './DiagonalCarousel';
 import { cn } from '../lib/utils';
@@ -27,11 +28,9 @@ function useResponsiveLayout() {
 
 export default function ProjectsCarousel({
   projects,
-  onSelect,
   className,
 }: {
   projects: Project[];
-  onSelect?: (project: Project) => void;
   className?: string;
 }) {
   const [active, setActive] = useState(0);
@@ -134,14 +133,13 @@ export default function ProjectsCarousel({
               {current?.type}
             </span>
             <p className="mt-2 mb-3 text-muted">{current?.description}</p>
-            {current && onSelect && (
-              <button
-                type="button"
-                onClick={() => onSelect(current)}
+            {current && (
+              <Link
+                to={`/projects/${current.id}`}
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-text-primary underline-offset-4 hover:underline"
               >
                 View details <ArrowUpRight className="h-4 w-4" />
-              </button>
+              </Link>
             )}
           </motion.div>
         </AnimatePresence>
