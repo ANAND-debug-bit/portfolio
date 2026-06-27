@@ -185,6 +185,7 @@ export const projects: Project[] = [
       '/projects/medora/4.png',
       '/projects/medora/5.png',
     ],
+    link: 'https://testflight.apple.com/join/fAmbvbrK',
     year: 'Jun 2026',
   },
 ];
