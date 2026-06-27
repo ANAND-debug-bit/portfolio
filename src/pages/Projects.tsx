@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 import ProjectsGallery from '../components/ProjectsGallery';
 import ProjectsCarousel from '../components/ProjectsCarousel';
-import { projects } from '../data/projects';
+import ProjectModal from '../components/ProjectModal';
+import { projects, type Project } from '../data/projects';
 
 export default function Projects() {
+  const [selected, setSelected] = useState<Project | null>(null);
+
   return (
     <div className="bg-bg min-h-screen pt-32 pb-24">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
@@ -30,7 +34,7 @@ export default function Projects() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <ProjectsCarousel projects={projects} />
+          <ProjectsCarousel projects={projects} onSelect={setSelected} />
         </motion.div>
 
         {/* Scroll-to-explore cue */}
@@ -50,8 +54,10 @@ export default function Projects() {
         </motion.div>
 
         {/* Full gallery */}
-        <ProjectsGallery projects={projects} />
+        <ProjectsGallery projects={projects} onSelect={setSelected} />
       </div>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }

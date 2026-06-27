@@ -4,7 +4,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import DiagonalCarousel from './DiagonalCarousel';
 import { cn } from '../lib/utils';
-import type { Project } from '../data/projects';
+import { projectImageSrc, type Project } from '../data/projects';
 
 const SWIPE_DISTANCE = 50; // px of horizontal travel before a swipe registers
 
@@ -27,9 +27,11 @@ function useResponsiveLayout() {
 
 export default function ProjectsCarousel({
   projects,
+  onSelect,
   className,
 }: {
   projects: Project[];
+  onSelect?: (project: Project) => void;
   className?: string;
 }) {
   const [active, setActive] = useState(0);
@@ -37,7 +39,7 @@ export default function ProjectsCarousel({
   const count = projects.length;
 
   const items = useMemo(
-    () => projects.map((p) => ({ src: p.image, title: p.name, alt: p.name })),
+    () => projects.map((p) => ({ src: projectImageSrc(p), title: p.name, alt: p.name })),
     [projects],
   );
 
@@ -132,15 +134,14 @@ export default function ProjectsCarousel({
               {current?.type}
             </span>
             <p className="mt-2 mb-3 text-muted">{current?.description}</p>
-            {current?.link && (
-              <a
-                href={current.link}
-                target="_blank"
-                rel="noreferrer"
+            {current && onSelect && (
+              <button
+                type="button"
+                onClick={() => onSelect(current)}
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-text-primary underline-offset-4 hover:underline"
               >
-                View project <ArrowUpRight className="h-4 w-4" />
-              </a>
+                View details <ArrowUpRight className="h-4 w-4" />
+              </button>
             )}
           </motion.div>
         </AnimatePresence>

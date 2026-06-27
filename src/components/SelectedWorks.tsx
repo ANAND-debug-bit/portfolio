@@ -1,34 +1,23 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import MagneticCard from './MagneticCard';
+import { projects as allProjects, projectImageSrc } from '../data/projects';
 
-const projects = [
-  {
-    title: "Automotive Motion",
-    span: "md:col-span-7",
-    aspect: "aspect-[4/3] md:aspect-[16/9]",
-    image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop"
-  },
-  {
-    title: "Urban Architecture",
-    span: "md:col-span-5",
-    aspect: "aspect-[4/3] md:aspect-[4/5]",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    title: "Human Perspective",
-    span: "md:col-span-5",
-    aspect: "aspect-[4/3] md:aspect-[4/5]",
-    image: "https://images.unsplash.com/photo-1551524164-687a5acf39ed?q=80&w=2071&auto=format&fit=crop"
-  },
-  {
-    title: "Brand Identity",
-    span: "md:col-span-7",
-    aspect: "aspect-[4/3] md:aspect-[16/9]",
-    image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2194&auto=format&fit=crop"
-  }
+// Layout for the bento grid, paired with featured projects by id.
+const layout = [
+  { id: 'om-daily', span: 'md:col-span-7', aspect: 'aspect-[4/3] md:aspect-[16/9]' },
+  { id: 'kastrals', span: 'md:col-span-5', aspect: 'aspect-[4/3] md:aspect-[4/5]' },
+  { id: 'haven', span: 'md:col-span-5', aspect: 'aspect-[4/3] md:aspect-[4/5]' },
+  { id: 'khet', span: 'md:col-span-7', aspect: 'aspect-[4/3] md:aspect-[16/9]' },
 ];
+
+const projects = layout.flatMap(({ id, span, aspect }) => {
+  const project = allProjects.find((p) => p.id === id);
+  if (!project) return [];
+  return [{ title: project.name, span, aspect, image: projectImageSrc(project) }];
+});
 
 export default function SelectedWorks() {
   return (
@@ -58,13 +47,16 @@ export default function SelectedWorks() {
             </p>
           </div>
 
-          <button className="hidden md:inline-flex group relative rounded-full text-sm px-6 py-3 bg-surface text-text-primary border border-stroke hover:border-transparent transition-all duration-300">
+          <Link
+            to="/projects"
+            className="hidden md:inline-flex group relative rounded-full text-sm px-6 py-3 bg-surface text-text-primary border border-stroke hover:border-transparent transition-all duration-300"
+          >
             <span className="absolute inset-[-1px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300" />
             <span className="absolute inset-[1px] bg-bg rounded-full opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300" />
             <div className="relative z-10 flex items-center gap-2">
               View all work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
-          </button>
+          </Link>
         </motion.div>
 
         {/* Bento Grid */}
@@ -101,11 +93,18 @@ export default function SelectedWorks() {
                 <div className="relative transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                   <div className="absolute inset-[-2px] rounded-full accent-gradient animate-gradient-shift background-size-200" />
                   <div className="relative bg-white text-bg px-5 py-2.5 rounded-full flex items-center gap-2 text-sm font-medium">
-                    View — <span className="font-display italic text-base translate-y-[1px]">{project.title}</span>
+                    View <span className="font-display italic text-base translate-y-[1px]">{project.title}</span>
                   </div>
                 </div>
 
               </div>
+
+              {/* Click-through to the full Projects page */}
+              <Link
+                to="/projects"
+                aria-label={`View ${project.title}`}
+                className="absolute inset-0 z-10"
+              />
             </MagneticCard>
           ))}
         </div>

@@ -1,9 +1,17 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import MagneticCard from './MagneticCard';
-import type { Project } from '../data/projects';
+import { projectImageSrc, type Project } from '../data/projects';
 
-function GalleryCard({ project, index }: { project: Project; index: number }) {
+function GalleryCard({
+  project,
+  index,
+  onSelect,
+}: {
+  project: Project;
+  index: number;
+  onSelect: (project: Project) => void;
+}) {
   const number = String(index + 1).padStart(2, '0');
 
   return (
@@ -16,7 +24,7 @@ function GalleryCard({ project, index }: { project: Project; index: number }) {
     >
       {/* Image — full color, subtle zoom on hover */}
       <img
-        src={project.image}
+        src={projectImageSrc(project)}
         alt={project.name}
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
@@ -53,21 +61,16 @@ function GalleryCard({ project, index }: { project: Project; index: number }) {
         </p>
       </div>
 
-      {/* Click-through arrow + full-card link (only when a link exists) */}
-      {project.link && (
-        <>
-          <div className="absolute top-5 right-5 z-20 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full bg-text-primary text-bg opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-            <ArrowUpRight className="h-4 w-4" />
-          </div>
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`Open ${project.name}`}
-            className="absolute inset-0 z-30"
-          />
-        </>
-      )}
+      {/* Click-through arrow + full-card trigger (opens the detail popup) */}
+      <div className="absolute top-5 right-5 z-20 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full bg-text-primary text-bg opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <ArrowUpRight className="h-4 w-4" />
+      </div>
+      <button
+        type="button"
+        onClick={() => onSelect(project)}
+        aria-label={`View ${project.name}`}
+        className="absolute inset-0 z-30 cursor-pointer"
+      />
 
       {/* Hover border */}
       <div className="pointer-events-none absolute inset-0 rounded-3xl border border-transparent transition-colors duration-500 group-hover:border-stroke" />
@@ -75,7 +78,13 @@ function GalleryCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
-export default function ProjectsGallery({ projects }: { projects: Project[] }) {
+export default function ProjectsGallery({
+  projects,
+  onSelect,
+}: {
+  projects: Project[];
+  onSelect: (project: Project) => void;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -85,7 +94,7 @@ export default function ProjectsGallery({ projects }: { projects: Project[] }) {
       className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-3"
     >
       {projects.map((project, i) => (
-        <GalleryCard key={project.id} project={project} index={i} />
+        <GalleryCard key={project.id} project={project} index={i} onSelect={onSelect} />
       ))}
     </motion.div>
   );
