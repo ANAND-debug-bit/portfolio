@@ -1,8 +1,61 @@
 import { useRef } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion';
 import { InfiniteSlider } from '../components/core/infinite-slider';
 import MagneticCard from '../components/MagneticCard';
 import TravelSection from '../components/TravelSection';
+
+const ABOUT_INTRO_TEXT =
+  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+
+function AnimatedIntroCharacter({
+  char,
+  index,
+  progress,
+  total,
+}: {
+  char: string;
+  index: number;
+  progress: MotionValue<number>;
+  total: number;
+}) {
+  const start = index / total;
+  const end = Math.min(1, start + 0.16);
+  const opacity = useTransform(progress, [start, end], [0.2, 1]);
+
+  return (
+    <motion.span aria-hidden="true" style={{ opacity }}>
+      {char}
+    </motion.span>
+  );
+}
+
+function AnimatedIntroText() {
+  const textRef = useRef<HTMLParagraphElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: textRef,
+    offset: ['start 0.8', 'end 0.2'],
+  });
+
+  return (
+    <div className="about-intro-edge-glow relative isolate mt-10 w-full max-w-[640px] rounded-3xl border border-stroke bg-surface/30 px-6 py-7 shadow-[0_18px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:px-8 sm:py-8 md:px-10 md:py-9">
+      <p
+        ref={textRef}
+        aria-label={ABOUT_INTRO_TEXT}
+        className="mx-auto max-w-[560px] whitespace-pre-wrap text-center text-[clamp(1rem,2vw,1.35rem)] font-medium leading-relaxed text-[#D7E2EA]"
+      >
+        {ABOUT_INTRO_TEXT.split('').map((char, index) => (
+          <AnimatedIntroCharacter
+            key={`${char}-${index}`}
+            char={char}
+            index={index}
+            progress={scrollYProgress}
+            total={ABOUT_INTRO_TEXT.length}
+          />
+        ))}
+      </p>
+    </div>
+  );
+}
 
 type TimelineEventData = {
   year: string;
@@ -330,10 +383,7 @@ export default function About() {
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-display italic tracking-tight text-text-primary mb-6">
             About Me
           </h1>
-          <p className="text-muted text-lg md:text-xl max-w-2xl">
-            A brief history of my journey, from the beginning to where I am today. 
-            Designing, building, and constantly learning.
-          </p>
+          <AnimatedIntroText />
         </motion.div>
 
         {/* Timeline Container */}

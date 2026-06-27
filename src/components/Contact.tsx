@@ -42,7 +42,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <section className="relative bg-bg pt-24 md:pt-40 pb-8 md:pb-12 overflow-hidden min-h-[80vh] flex flex-col justify-between">
+    <section id="contact" className="relative bg-bg pt-24 md:pt-40 pb-8 md:pb-12 overflow-hidden min-h-[80vh] flex flex-col justify-between">
       
       {/* Background Video */}
       <div className="absolute inset-0 z-0">

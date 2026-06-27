@@ -3,6 +3,7 @@ import SelectedWorks from '../components/SelectedWorks';
 import Journal from '../components/Journal';
 import Explorations from '../components/Explorations';
 import Stats from '../components/Stats';
+import TextFlippingBoardDemo from '../components/TextFlippingBoardDemo';
 import ContactSection from '../components/Contact'; // The old one with the video
 
 export default function Home({ isLoading }: { isLoading: boolean }) {
@@ -13,6 +14,7 @@ export default function Home({ isLoading }: { isLoading: boolean }) {
       <Journal />
       <Explorations />
       <Stats />
+      <TextFlippingBoardDemo />
       <ContactSection />
     </>
   );
