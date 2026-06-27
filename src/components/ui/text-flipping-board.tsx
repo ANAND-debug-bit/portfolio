@@ -4,8 +4,9 @@ import { cn } from "../../lib/utils";
 
 const FLAP_CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$()-+&=;:'\"%,./?°";
 
-const BOARD_ROWS = 6;
-const BOARD_COLS = 22;
+const BOARD_ROWS = 3;
+const BOARD_COLS = 18;
+const BOARD_FRAME_ROWS = 2;
 
 const BASE_COL_DELAY = 30;
 const BASE_ROW_DELAY = 20;
@@ -36,12 +37,14 @@ const FlapCell = React.memo(function FlapCell({
   stepMs,
   flipDuration,
   textStyle,
+  compactMotion,
 }: {
   target: string;
   delay: number;
   stepMs: number;
   flipDuration: number;
   textStyle: React.CSSProperties;
+  compactMotion: boolean;
 }) {
   const [current, setCurrent] = useState(" ");
   const [prev, setPrev] = useState(" ");
@@ -51,8 +54,11 @@ const FlapCell = React.memo(function FlapCell({
   const curRef = useRef(" ");
   const tgtRef = useRef<string | null>(null);
   const accentRef = useRef<AccentColor | null>(null);
+  const compactMotionRef = useRef(compactMotion);
   const startTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const stepTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  compactMotionRef.current = compactMotion;
 
   useEffect(() => {
     if (startTimer.current) clearTimeout(startTimer.current);
@@ -68,10 +74,13 @@ const FlapCell = React.memo(function FlapCell({
 
     if (normalized === " " && curRef.current === " ") return;
 
+    const useCompactMotion = compactMotionRef.current;
     const scrambleCount =
-      normalized === " "
-        ? 8 + Math.floor(Math.random() * 8)
-        : 25 + Math.floor(Math.random() * 15);
+      useCompactMotion
+        ? 1
+        : normalized === " "
+          ? 8 + Math.floor(Math.random() * 8)
+          : 25 + Math.floor(Math.random() * 15);
 
     const runStep = (i: number) => {
       const isLast = i === scrambleCount;
@@ -250,7 +259,8 @@ const FlapCell = React.memo(function FlapCell({
   prevProps.delay === nextProps.delay &&
   prevProps.stepMs === nextProps.stepMs &&
   prevProps.flipDuration === nextProps.flipDuration &&
-  prevProps.textStyle.fontSize === nextProps.textStyle.fontSize,
+  prevProps.textStyle.fontSize === nextProps.textStyle.fontSize &&
+  prevProps.compactMotion === nextProps.compactMotion,
 );
 
 // ── Color Tile ────────────────────────────────────────────────────────
@@ -311,7 +321,9 @@ function wrapParagraph(paragraph: string, maxCols: number): string[] {
         lines.push(currentLine);
         currentLine = "";
       }
-      lines.push(word.slice(0, maxCols));
+      for (let i = 0; i < word.length; i += maxCols) {
+        lines.push(word.slice(i, i + maxCols));
+      }
       continue;
     }
 
@@ -348,8 +360,8 @@ export interface TextFlippingBoardProps {
 }
 
 /**
- * Fewer columns on small screens so each flap (and its glyph) stays large
- * enough to read on a phone. Falls back to the full 22-wide board on desktop.
+ * Fewer columns on small screens keep the glyphs readable on phones. The text
+ * gets one empty row above and below it so the board still feels physical.
  */
 function useResponsiveBoard() {
   const [dims, setDims] = useState({ cols: BOARD_COLS, rows: BOARD_ROWS });
@@ -357,8 +369,9 @@ function useResponsiveBoard() {
   useEffect(() => {
     const compute = () => {
       const w = window.innerWidth;
-      if (w < 480) setDims({ cols: 12, rows: 7 });
-      else if (w < 768) setDims({ cols: 16, rows: 6 });
+      if (w < 360) setDims({ cols: 10, rows: 6 });
+      else if (w < 480) setDims({ cols: 11, rows: 5 });
+      else if (w < 768) setDims({ cols: 14, rows: 4 });
       else setDims({ cols: BOARD_COLS, rows: BOARD_ROWS });
     };
     compute();
@@ -375,23 +388,35 @@ export function TextFlippingBoard({
   className,
   duration = BASE_TOTAL_S,
 }: TextFlippingBoardProps) {
-  const { cols, rows: boardRows } = useResponsiveBoard();
+  const { cols, rows: maxRows } = useResponsiveBoard();
 
   const scale = duration / BASE_TOTAL_S;
   const colDelay = BASE_COL_DELAY * scale;
   const rowDelay = BASE_ROW_DELAY * scale;
   const stepMs = BASE_STEP_MS * scale;
   const flipDur = Math.min(0.6, Math.max(0.15, BASE_FLIP_S * scale));
+  const compactMotion = cols <= 11;
 
   // Size the glyph from the actual cell width so it scales with the column
   // count, not just the viewport.
   const textStyle = useMemo<React.CSSProperties>(
     () => ({
-      fontSize: `clamp(9px, calc(min(94vw, 760px) / ${cols} * 0.62), 24px)`,
+      fontSize: `clamp(14px, calc(min(94vw, 1240px) / ${cols} * 0.7), 44px)`,
       lineHeight: 1,
     }),
     [cols],
   );
+
+  const contentRows = useMemo(() => {
+    if (text) return wrapText(text, cols).slice(0, maxRows);
+    if (rows) return rows.slice(0, maxRows);
+    return [];
+  }, [rows, text, cols, maxRows]);
+
+  const boardRows = maxRows + BOARD_FRAME_ROWS;
+  const startRow = contentRows.length
+    ? 1 + Math.max(0, Math.floor((maxRows - contentRows.length) / 2))
+    : 1;
 
   const board = useMemo(() => {
     const grid: ParsedCell[][] = Array.from({ length: boardRows }, () =>
@@ -401,12 +426,10 @@ export function TextFlippingBoard({
       })),
     );
 
-    if (text) {
-      const lines = wrapText(text, cols).slice(0, boardRows);
-      const startRow = Math.max(0, Math.floor((boardRows - lines.length) / 2));
-      lines.forEach((line, i) => {
+    if (contentRows.length) {
+      contentRows.forEach((line, i) => {
         const row = startRow + i;
-        if (row >= boardRows) return;
+        if (row >= boardRows - 1) return;
         const parsed = parseRow(line);
         const startCol = Math.max(0, Math.floor((cols - parsed.length) / 2));
         parsed.forEach((cell, c) => {
@@ -415,25 +438,15 @@ export function TextFlippingBoard({
           }
         });
       });
-    } else if (rows) {
-      rows.forEach((row, r) => {
-        if (r >= boardRows) return;
-        const parsed = parseRow(row);
-        parsed.forEach((cell, c) => {
-          if (c < cols) {
-            grid[r][c] = cell;
-          }
-        });
-      });
     }
 
     return grid;
-  }, [rows, text, cols, boardRows]);
+  }, [contentRows, cols, boardRows, startRow]);
 
   return (
     <div
       className={cn(
-        "relative mx-auto w-full max-w-3xl rounded-xl bg-neutral-100 p-2 shadow-xl md:rounded-2xl md:p-4 dark:bg-neutral-900 dark:shadow-[0_20px_70px_-15px_rgba(0,0,0,0.6)]",
+        "relative mx-auto w-full max-w-[1240px] rounded-xl bg-neutral-100 p-1.5 shadow-xl sm:p-2 md:rounded-2xl md:p-4 dark:bg-neutral-900 dark:shadow-[0_20px_70px_-15px_rgba(0,0,0,0.6)]",
         className,
       )}
     >
@@ -453,6 +466,7 @@ export function TextFlippingBoard({
                 stepMs={stepMs}
                 flipDuration={flipDur}
                 textStyle={textStyle}
+                compactMotion={compactMotion}
               />
             ),
           ),

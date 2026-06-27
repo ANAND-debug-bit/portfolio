@@ -46,7 +46,7 @@ export const projects: Project[] = [
       'Forecasts future revenue from competitor, weather, and trend data',
       'Turns every prediction into a clear, do-this-next checklist',
     ],
-    award: '1st Place, Divergent Teams Microsoft Hackathon',
+    award: '1st Place, Microsoft Divergent Teams Boston Builder Hackathon, Finance Track',
     tags: ['Web App', 'Forecasting', 'Local Business'],
     image: '/projects/kastrals-1.png',
     gallery: [
@@ -90,6 +90,7 @@ export const projects: Project[] = [
       'Farmers search or draw their farm on the map, then get data tailored to it via GeoJSON',
       'AI assistant explains conditions and recommends next steps',
     ],
+    award: 'Won 1st place overall at NNHS Unplugged Hackathon',
     tags: ['Web App', 'Satellite Data', 'AI Assistant'],
     image: '/projects/khet.png',
     link: 'https://khets.vercel.app/',
@@ -124,6 +125,11 @@ export const projects: Project[] = [
       'Also covers specific ones like Jain and halal',
     ],
     tags: ['Mobile', 'Health', 'Label Scanning'],
+    image: '/projects/can-i-eat-this/1.png',
+    gallery: [
+      '/projects/can-i-eat-this/2.png',
+      '/projects/can-i-eat-this/3.png',
+    ],
     year: 'Feb 2026',
   },
   {
@@ -140,6 +146,7 @@ export const projects: Project[] = [
       'Earn Om Coins for completing lessons',
       'Started as a website with daily Bhagavad Gita quotes, now a mobile app',
     ],
+    award: 'My first app accepted on the App Store',
     tags: ['Mobile', 'Hinduism', 'Gamified'],
     image: '/projects/om-daily/1.png',
     gallery: [
