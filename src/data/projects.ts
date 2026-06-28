@@ -9,6 +9,7 @@
  *                  and under the active slide in the carousel)
  *   - overview:    the longer paragraph shown in the popup
  *   - highlights:  OPTIONAL — bullet points shown in the popup
+ *   - languages:   OPTIONAL — GitHub-style language composition shown in the popup
  *   - award:       OPTIONAL — shown as a ribbon in the popup
  *   - tags:        OPTIONAL — small pills (tech / platform / focus)
  *   - image:       OPTIONAL — cover photo. Drop a file in /public/projects
@@ -25,12 +26,18 @@ export interface Project {
   description: string;
   overview: string;
   highlights?: string[];
+  languages?: ProjectLanguage[];
   award?: string;
   tags?: string[];
   image?: string;
   gallery?: string[];
   link?: string;
   year?: string;
+}
+
+export interface ProjectLanguage {
+  name: string;
+  value: number;
 }
 
 export const projects: Project[] = [
@@ -45,6 +52,12 @@ export const projects: Project[] = [
       'Tracks market trends and finds nearby events to market around',
       'Forecasts future revenue from competitor, weather, and trend data',
       'Turns every prediction into a clear, do-this-next checklist',
+    ],
+    languages: [
+      { name: 'JavaScript', value: 75.9 },
+      { name: 'TypeScript', value: 22.4 },
+      { name: 'CSS', value: 1.5 },
+      { name: 'HTML', value: 0.2 },
     ],
     award: '1st Place, Microsoft Divergent Teams Boston Builder Hackathon, Finance Track',
     tags: ['Web App', 'Forecasting', 'Local Business'],
@@ -70,6 +83,12 @@ export const projects: Project[] = [
       'Emergency features locate the nearest shelters during a crisis',
       'Validated through 5 target-user interviews and 5 users on launch day',
     ],
+    languages: [
+      { name: 'JavaScript', value: 85.5 },
+      { name: 'TypeScript', value: 12.1 },
+      { name: 'CSS', value: 1.8 },
+      { name: 'HTML', value: 0.6 },
+    ],
     award: 'Best Technical Award, Boston University High School Hackathon',
     tags: ['Web App', 'Neural Networks', 'Social Impact'],
     image: '/projects/haven-1.png',
@@ -90,11 +109,42 @@ export const projects: Project[] = [
       'Farmers search or draw their farm on the map, then get data tailored to it via GeoJSON',
       'AI assistant explains conditions and recommends next steps',
     ],
+    languages: [
+      { name: 'TypeScript', value: 97 },
+      { name: 'CSS', value: 2.6 },
+      { name: 'Other', value: 0.4 },
+    ],
     award: 'Won 1st place overall at NNHS Unplugged Hackathon',
     tags: ['Web App', 'Satellite Data', 'AI Assistant'],
     image: '/projects/khet.png',
     link: 'https://khets.vercel.app/',
     year: 'Jun 2026',
+  },
+  {
+    id: 'taplock',
+    name: 'TapLock',
+    type: 'Mobile App',
+    description: 'An NFC-powered screen-time blocker that keeps selected apps locked until you tap your card again.',
+    overview:
+      "TapLock helps you stay locked in by making screen-time blocking harder to bypass. I noticed a lot of screen-time apps were either too easy to unlock, where I could just open the app and tap a button, or way too expensive. So I built TapLock: you tap an NFC card to lock selected apps, then tap the same card again when you are ready to unlock them. It also tracks streaks, previous screen time, time saved, and milestones so staying focused feels more rewarding.",
+    highlights: [
+      'Locks and unlocks selected apps with a physical NFC card',
+      'Makes focus sessions harder to bypass than a normal in-app unlock button',
+      'Tracks streaks, locks, time saved, and screen-time history',
+      'Includes settings for Screen Time permissions, blocked apps, and paired card management',
+      'Built in Swift for a B2C mobile experience',
+    ],
+    languages: [{ name: 'Swift', value: 100 }],
+    tags: ['Mobile', 'Swift', 'NFC', 'Screen Time', 'B2C'],
+    image: '/projects/taplock/1.png',
+    gallery: [
+      '/projects/taplock/2.png',
+      '/projects/taplock/3.png',
+      '/projects/taplock/4.png',
+      '/projects/taplock/5.png',
+      '/projects/taplock/6.png',
+    ],
+    year: '2026',
   },
   {
     id: 'flow',
@@ -108,6 +158,7 @@ export const projects: Project[] = [
       'Summarizes plans and adds events directly to your calendar',
       'Works with iMessage and Slack channels',
     ],
+    languages: [{ name: 'Swift', value: 100 }],
     tags: ['macOS', 'Productivity', 'iMessage + Slack'],
     year: 'Apr 2026',
   },
@@ -124,6 +175,7 @@ export const projects: Project[] = [
       'Supports broad restrictions like vegetarian and vegan',
       'Also covers specific ones like Jain and halal',
     ],
+    languages: [{ name: 'TypeScript', value: 100 }],
     tags: ['Mobile', 'Health', 'Label Scanning'],
     image: '/projects/can-i-eat-this/1.png',
     gallery: [
@@ -145,6 +197,13 @@ export const projects: Project[] = [
       'Learn prayers, stories, and festival traditions as you go',
       'Earn Om Coins for completing lessons',
       'Started as a website with daily Bhagavad Gita quotes, now a mobile app',
+    ],
+    languages: [
+      { name: 'TypeScript', value: 95.8 },
+      { name: 'Swift', value: 2.2 },
+      { name: 'PLpgSQL', value: 1.2 },
+      { name: 'JavaScript', value: 0.6 },
+      { name: 'Ruby', value: 0.2 },
     ],
     award: 'My first app accepted on the App Store',
     tags: ['Mobile', 'Hinduism', 'Gamified'],
@@ -176,6 +235,7 @@ export const projects: Project[] = [
       'Log symptoms and get an AI summary at the end of every cycle',
       'Built with Swift and integrates Apple HealthKit',
     ],
+    languages: [{ name: 'Swift', value: 100 }],
     tags: ['iOS', 'Swift', 'Apple HealthKit'],
     image: '/projects/medora.png',
     gallery: [

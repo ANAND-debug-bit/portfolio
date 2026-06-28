@@ -296,15 +296,6 @@ const events: TimelineEventData[] = [
     },
   },
   {
-    year: "September 2018",
-    title: "Nyra Was Born",
-    description: "My baby sister, Nyra, was born.",
-    image: {
-      src: "/about/baby-sister.jpeg",
-      alt: "Aahish holding his baby sister Nyra",
-    },
-  },
-  {
     year: "September 2021",
     title: "5th Grade During COVID",
     description: "Started 5th grade during COVID. I also made my first attempt at becoming a famous YouTuber. Didn't go viral, but I learned how to edit videos and photos.",

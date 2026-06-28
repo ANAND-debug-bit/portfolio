@@ -114,12 +114,6 @@
   }
 }
 
-@property --about-glow-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
 @layer utilities {
   @keyframes infinite-slider-scroll {
     from { transform: translateX(0); }
@@ -146,45 +140,20 @@
   }
 
   .about-intro-edge-glow {
-    overflow: visible;
+    overflow: hidden;
+    border-color: rgba(78, 133, 191, 0.72);
+    box-shadow:
+      0 0 0 1px rgba(137, 170, 204, 0.16),
+      0 0 28px rgba(78, 133, 191, 0.2);
   }
 
   .about-intro-edge-glow::before {
     content: "";
     position: absolute;
-    inset: -5px;
-    z-index: -1;
-    border-radius: 1.75rem;
-    padding: 2px;
+    inset: 0;
+    border-radius: inherit;
     pointer-events: none;
-    background: conic-gradient(
-      from var(--about-glow-angle, 0deg),
-      transparent 0deg,
-      transparent 78deg,
-      rgba(78, 133, 191, 0.95) 112deg,
-      rgba(160, 211, 255, 0.65) 136deg,
-      transparent 172deg,
-      transparent 262deg,
-      rgba(78, 133, 191, 0.82) 292deg,
-      transparent 326deg,
-      transparent 360deg
-    );
-    filter: drop-shadow(0 0 10px rgba(78, 133, 191, 0.35));
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    animation: about-glow-spin 7s linear infinite;
-  }
-
-  @keyframes about-glow-spin {
-    to {
-      --about-glow-angle: 360deg;
-    }
+    border: 1px solid rgba(160, 211, 255, 0.18);
   }
   
   .font-body {

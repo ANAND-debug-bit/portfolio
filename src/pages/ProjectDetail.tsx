@@ -17,6 +17,78 @@ const PROJECT_ACTION_BUTTON = cn(
   'px-4 py-2.5 text-sm shadow-[0_10px_28px_-8px_rgba(37,99,235,0.68)] sm:px-5 sm:py-3 md:px-7 md:py-3.5 md:text-base',
 );
 
+const LANGUAGE_COLORS: Record<string, string> = {
+  JavaScript: '#F7DF1E',
+  TypeScript: '#3178C6',
+  CSS: '#7C3AED',
+  HTML: '#E34F26',
+  Swift: '#FA7343',
+  PLpgSQL: '#336791',
+  Ruby: '#CC342D',
+  Other: '#8B949E',
+};
+
+const languagePercentFormatter = new Intl.NumberFormat('en-US', {
+  maximumFractionDigits: 1,
+});
+
+function languageColor(language: string) {
+  return LANGUAGE_COLORS[language] ?? LANGUAGE_COLORS.Other;
+}
+
+function LanguageComposition({ languages }: { languages?: Project['languages'] }) {
+  const visibleLanguages = (languages ?? []).filter((language) => language.value > 0);
+
+  if (visibleLanguages.length === 0) return null;
+
+  const total = visibleLanguages.reduce((sum, language) => sum + language.value, 0);
+  let cursor = 0;
+  const gradientStops = visibleLanguages
+    .map((language) => {
+      const start = (cursor / total) * 100;
+      cursor += language.value;
+      const end = (cursor / total) * 100;
+
+      return `${languageColor(language.name)} ${start.toFixed(3)}% ${end.toFixed(3)}%`;
+    })
+    .join(', ');
+
+  return (
+    <section className="mt-10 border-t border-stroke pt-8" aria-label="Language composition">
+      <div className="grid gap-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:items-center md:grid-cols-1 lg:grid-cols-[9rem_minmax(0,1fr)]">
+        <div
+          className="relative h-[8.5rem] w-[8.5rem] shrink-0 rounded-full shadow-[0_16px_44px_-30px_rgba(255,255,255,0.45)]"
+          style={{ background: `conic-gradient(from -90deg, ${gradientStops})` }}
+          aria-hidden="true"
+        >
+          <div className="absolute inset-[10%] flex items-center justify-center rounded-full border border-stroke bg-bg text-center shadow-[inset_0_0_20px_rgba(255,255,255,0.035)]">
+            <span className="text-[11px] uppercase tracking-[0.18em] text-muted">Languages</span>
+          </div>
+        </div>
+
+        <ul className="grid min-w-0 gap-2.5">
+          {visibleLanguages.map((language) => (
+            <li
+              key={language.name}
+              className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2.5"
+            >
+              <span
+                className="h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: languageColor(language.name) }}
+                aria-hidden="true"
+              />
+              <span className="truncate text-sm text-text-primary/85">{language.name}</span>
+              <span className="font-mono text-xs text-muted">
+                {languagePercentFormatter.format(language.value)}%
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 export default function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
   const project: Project | undefined = projects.find((p) => p.id === id);
@@ -176,6 +248,7 @@ export default function ProjectDetail() {
                   </li>
                 ))}
               </ul>
+              <LanguageComposition languages={project.languages} />
             </motion.div>
           )}
         </div>

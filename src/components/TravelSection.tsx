@@ -92,12 +92,9 @@ export default function TravelSection() {
         className="mx-auto mb-6 flex max-w-[1100px] flex-col items-center text-center md:mb-8"
       >
         <div className="mb-8 h-1 w-12 rounded-full bg-gradient-to-r from-[#89AACC] to-[#4E85BF] shadow-[0_0_15px_rgba(137,170,204,0.5)]" />
-        <h2 className="mb-6 font-display text-6xl italic tracking-tight text-text-primary md:text-8xl lg:text-9xl">
+        <h2 className="font-display text-6xl italic tracking-tight text-text-primary md:text-8xl lg:text-9xl">
           Travel!
         </h2>
-        <p className="max-w-2xl text-lg text-muted md:text-xl">
-          I love traveling across the world.
-        </p>
       </motion.div>
 
       <div className="mx-auto flex w-full max-w-[1100px] flex-col pb-[12vh]">
