@@ -137,6 +137,7 @@ export default function SelectedWorks() {
   const bhOverlayRef = useRef<HTMLDivElement>(null);
   const bhImageRef = useRef<HTMLImageElement>(null);
   const bhHintRef = useRef<HTMLDivElement>(null);
+  const lostHandRef = useRef<HTMLDivElement>(null);
 
   const previews = useMemo<ProjectPreview[]>(
     () =>
@@ -156,6 +157,7 @@ export default function SelectedWorks() {
     const overlay = bhOverlayRef.current;
     const bhImage = bhImageRef.current;
     const bhHint = bhHintRef.current;
+    const lostHand = lostHandRef.current;
     const media = gsap.matchMedia();
 
     media.add('(prefers-reduced-motion: no-preference)', () => {
@@ -184,7 +186,20 @@ export default function SelectedWorks() {
 
           // Horizontal scroll begins once the zoom budget is spent.
           const h = Math.max(0, px - zp);
-          gsap.set(group, { x: -Math.min(h, distancePx()) });
+          const distance = distancePx();
+          gsap.set(group, { x: -Math.min(h, distance) });
+
+          const horizontalP = distance > 0 ? clamp01(h / distance) : 0;
+          const handP = clamp01((horizontalP - 0.66) / 0.24);
+          const handEase = 0.5 - Math.cos(handP * Math.PI) / 2;
+          gsap.set(lostHand, {
+            autoAlpha: handP > 0.02 && handP < 0.98 ? Math.min(1, Math.sin(handP * Math.PI) * 1.4) : 0,
+            x: window.innerWidth * (0.68 - handEase * 0.18 + Math.sin(handP * Math.PI * 2) * 0.025),
+            y: window.innerHeight * (-0.16 + handEase * 1.24),
+            rotation: -12 + Math.sin(handP * Math.PI * 9) * 18 + handP * 18,
+            scale: 0.9 + Math.sin(handP * Math.PI) * 0.28,
+            transformOrigin: '65% 70%',
+          });
         };
 
         ScrollTrigger.create({
@@ -212,6 +227,7 @@ export default function SelectedWorks() {
       // No zoom: hide the black hole overlay and show the projects statically.
       gsap.set(group, { clearProps: 'transform' });
       if (overlay) gsap.set(overlay, { autoAlpha: 0 });
+      if (lostHand) gsap.set(lostHand, { autoAlpha: 0 });
     });
 
     return () => media.revert();
@@ -260,6 +276,14 @@ export default function SelectedWorks() {
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <span className="h-px w-12 bg-stroke" />
+        </div>
+
+        <div
+          ref={lostHandRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 z-30 text-7xl opacity-0 drop-shadow-[0_14px_24px_rgba(0,0,0,0.55)] will-change-transform md:text-8xl"
+        >
+          👋
         </div>
 
         {/* Black hole intro overlay — zooms into the core, then dissolves to

@@ -1,11 +1,16 @@
 import { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const byeHandRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Handle Video
@@ -31,18 +36,80 @@ export default function Contact() {
   }, []);
 
   useEffect(() => {
-    if (!marqueeRef.current) return;
-    
-    gsap.to(marqueeRef.current, {
-      xPercent: -50,
-      duration: 40,
-      ease: "none",
-      repeat: -1
-    });
+    const section = sectionRef.current;
+    const marquee = marqueeRef.current;
+    const byeHand = byeHandRef.current;
+    if (!section || !marquee || !byeHand) return;
+
+    const media = gsap.matchMedia();
+    const ctx = gsap.context(() => {
+      gsap.to(marquee, {
+        xPercent: -50,
+        duration: 40,
+        ease: "none",
+        repeat: -1,
+      });
+
+      media.add('(prefers-reduced-motion: no-preference)', () => {
+        const wave = gsap.timeline({ paused: true });
+        wave
+          .set(byeHand, {
+            autoAlpha: 0,
+            xPercent: -50,
+            y: 150,
+            rotation: -12,
+            scale: 0.85,
+            transformOrigin: '65% 75%',
+          })
+          .to(byeHand, {
+            autoAlpha: 1,
+            y: -82,
+            scale: 1.18,
+            duration: 0.62,
+            ease: 'back.out(1.6)',
+          })
+          .to(byeHand, {
+            rotation: 18,
+            duration: 0.16,
+            repeat: 5,
+            yoyo: true,
+            ease: 'sine.inOut',
+          }, '-=0.08')
+          .to(byeHand, {
+            rotation: 0,
+            y: () => -Math.min(window.innerHeight * 0.72, section.offsetHeight * 0.78),
+            scale: 1.08,
+            duration: 0.72,
+            ease: 'power3.inOut',
+          });
+
+        const trigger = ScrollTrigger.create({
+          trigger: section,
+          start: 'bottom bottom',
+          onEnter: () => wave.restart(),
+          onEnterBack: () => wave.restart(),
+          onLeaveBack: () => wave.pause(0),
+        });
+
+        return () => {
+          trigger.kill();
+          wave.kill();
+        };
+      });
+
+      media.add('(prefers-reduced-motion: reduce)', () => {
+        gsap.set(byeHand, { autoAlpha: 0 });
+      });
+    }, section);
+
+    return () => {
+      media.revert();
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <section id="contact" className="relative bg-bg pt-24 md:pt-40 pb-8 md:pb-12 overflow-hidden min-h-[80vh] flex flex-col justify-between">
+    <section ref={sectionRef} id="contact" className="relative bg-bg pt-24 md:pt-40 pb-8 md:pb-12 overflow-hidden min-h-[80vh] flex flex-col justify-between">
       
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
@@ -98,6 +165,14 @@ export default function Contact() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div
+        ref={byeHandRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-1/2 z-20 text-7xl opacity-0 drop-shadow-[0_18px_28px_rgba(0,0,0,0.65)] will-change-transform md:text-8xl"
+      >
+        👋
       </div>
 
     </section>
