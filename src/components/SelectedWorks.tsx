@@ -268,23 +268,27 @@ export default function SelectedWorks() {
             black hole's circle (and nowhere else — the image covers the rest). */}
         <div ref={bhOverlayRef} className="absolute inset-0 z-50 overflow-hidden bg-bg">
           <div className="pointer-events-none absolute inset-0" style={DOT_FIELD} />
-          <img
-            ref={bhImageRef}
-            src="/black-hole.jpg"
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover will-change-transform"
+          <div
+            className="absolute inset-0 overflow-hidden"
             style={{
-              transformOrigin: '50% 50%',
-              // Radius in vh so the dot-revealing core tracks the image's black
-              // centre at any aspect ratio. The image is 2:1 and `object-cover`
-              // scales it by height on virtually every viewport, so the on-screen
-              // core is ~height-proportional — percentages (of farthest-corner)
-              // drifted out of sync on tall phones, shrinking the hole.
+              // Keep the dot-revealing core fixed to the viewport while the JPG
+              // zooms behind it; putting this mask on the scaled image makes the
+              // transparent centre grow until it covers the whole screen on reverse.
               maskImage: 'radial-gradient(circle at 50% 50%, transparent 20vh, #000 34vh)',
               WebkitMaskImage: 'radial-gradient(circle at 50% 50%, transparent 20vh, #000 34vh)',
             }}
-          />
+          >
+            <img
+              ref={bhImageRef}
+              src="/black-hole.jpg"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover will-change-transform"
+              style={{
+                transformOrigin: '50% 50%',
+              }}
+            />
+          </div>
 
           {/* Lift the JPG's pure-black space (#000) up to the site background
               (a touch lighter than black) so the section's surround matches the
