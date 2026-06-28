@@ -12,10 +12,18 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     const duration = 2700; // 2.7s
     let animationFrameId: number;
 
+    // Fire onComplete exactly once, no matter which timer gets there first.
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      onComplete();
+    };
+
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      
+
       // Calculate current count based on progress
       const currentCount = Math.floor(progress * 100);
       setCount(currentCount);
@@ -23,13 +31,22 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(step);
       } else {
-        setTimeout(onComplete, 400); // 400ms delay after hitting 100
+        setTimeout(finish, 400); // 400ms delay after hitting 100
       }
     };
 
     animationFrameId = requestAnimationFrame(step);
 
-    return () => cancelAnimationFrame(animationFrameId);
+    // Wall-clock safety net: requestAnimationFrame is throttled (or paused
+    // entirely) in background tabs and on some devices, which would otherwise
+    // leave the counter stuck and the loader covering the page forever — a
+    // permanent black screen. This guarantees the loader always dismisses.
+    const fallbackId = window.setTimeout(finish, duration + 1500);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      clearTimeout(fallbackId);
+    };
   }, [onComplete]);
 
   useEffect(() => {

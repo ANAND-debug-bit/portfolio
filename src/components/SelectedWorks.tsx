@@ -1,114 +1,297 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { useEffect, useMemo, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import MagneticCard from './MagneticCard';
-import { projects as allProjects, projectImageSrc } from '../data/projects';
+import { projects as allProjects, projectImageSrc, type Project } from '../data/projects';
+import { cn } from '../lib/utils';
 
-// Layout for the bento grid, paired with featured projects by id.
-const layout = [
-  { id: 'om-daily', span: 'md:col-span-7', aspect: 'aspect-[4/3] md:aspect-[16/9]' },
-  { id: 'kastrals', span: 'md:col-span-5', aspect: 'aspect-[4/3] md:aspect-[4/5]' },
-  { id: 'haven', span: 'md:col-span-5', aspect: 'aspect-[4/3] md:aspect-[4/5]' },
-  { id: 'khet', span: 'md:col-span-7', aspect: 'aspect-[4/3] md:aspect-[16/9]' },
-];
+gsap.registerPlugin(ScrollTrigger);
 
-const projects = layout.flatMap(({ id, span, aspect }) => {
-  const project = allProjects.find((p) => p.id === id);
-  if (!project) return [];
-  return [{ id: project.id, title: project.name, span, aspect, image: projectImageSrc(project) }];
-});
+type ProjectPreview = {
+  project: Project;
+  size: string;
+  left: string; // horizontal position along the wordmark (% of the group)
+  top: string; // vertical position (% of viewport height)
+  rotation: string;
+  imageFit: string;
+  layer: 'front' | 'back';
+};
+
+// Five featured projects. Each image is pinned to a fixed spot ON the giant
+// wordmark (same moving group), so it never drifts relative to the text.
+const featuredOrder = ['om-daily', 'kastrals', 'medora', 'khet', 'haven'] as const;
+
+const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
+  'om-daily': {
+    size: 'w-[200px] sm:w-[230px] md:w-[260px] lg:w-[290px] aspect-[3/4]',
+    left: '15%',
+    top: '40%',
+    rotation: '-rotate-3',
+    imageFit: 'object-cover',
+    layer: 'front',
+  },
+  kastrals: {
+    size: 'w-[330px] sm:w-[410px] md:w-[480px] lg:w-[540px] aspect-[16/10]',
+    left: '33%',
+    top: '66%',
+    rotation: '-rotate-2',
+    imageFit: 'object-cover',
+    layer: 'front',
+  },
+  medora: {
+    size: 'w-[200px] sm:w-[235px] md:w-[265px] lg:w-[295px] aspect-[3/4]',
+    left: '51%',
+    top: '32%',
+    rotation: 'rotate-2',
+    imageFit: 'object-cover',
+    layer: 'front',
+  },
+  khet: {
+    size: 'w-[325px] sm:w-[405px] md:w-[470px] lg:w-[520px] aspect-[16/10]',
+    left: '69%',
+    top: '62%',
+    rotation: 'rotate-3',
+    imageFit: 'object-cover',
+    layer: 'front',
+  },
+  haven: {
+    size: 'w-[300px] sm:w-[360px] md:w-[410px] lg:w-[450px] aspect-[4/3]',
+    left: '88%',
+    top: '42%',
+    rotation: '-rotate-3',
+    imageFit: 'object-cover',
+    layer: 'front',
+  },
+};
+
+const marqueeFont =
+  "'Rosindale Display Condensed', 'Rosindale Display', 'Instrument Serif', Georgia, serif";
+
+// Evenly-spaced bright-blue dot grid, used behind the wordmark AND around the
+// black hole. One colour, a touch bigger/brighter, generously spaced.
+const DOT_FIELD = {
+  backgroundImage:
+    'radial-gradient(circle, rgba(99,179,255,0.55) 1.8px, transparent 2.4px)',
+  backgroundSize: '50px 50px',
+} as const;
+
+function ProjectCard({ preview, index }: { preview: ProjectPreview; index: number }) {
+  const { project, size, left, top, rotation, imageFit, layer } = preview;
+  return (
+    <article
+      className={cn(
+        'absolute -translate-x-1/2 -translate-y-1/2',
+        size,
+        rotation,
+        layer === 'back' ? 'z-0' : 'z-20',
+      )}
+      style={{ left, top }}
+    >
+      <Link
+        to={`/projects/${project.id}`}
+        aria-label={`View ${project.name}`}
+        className="group block h-full w-full overflow-hidden rounded-[8px] border border-white/15 bg-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
+      >
+        <img
+          src={projectImageSrc(project)}
+          alt={project.name}
+          className={cn(
+            'h-full w-full transition-transform duration-700 group-hover:scale-105',
+            imageFit,
+          )}
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/8 to-transparent opacity-80" />
+
+        <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.24em] text-white/70 sm:left-5 sm:right-5 sm:top-5">
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          {project.year && <span className="text-right">{project.year}</span>}
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6">
+          <div className="mb-2 text-[10px] uppercase tracking-[0.24em] text-white/60">
+            {project.type}
+          </div>
+          <div className="flex items-end justify-between gap-4">
+            <h3
+              className="text-4xl leading-none tracking-normal text-white md:text-5xl"
+              style={{ fontFamily: marqueeFont }}
+            >
+              {project.name}
+            </h3>
+            <span className="mb-1 flex size-9 shrink-0 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+              <ArrowUpRight className="size-4" />
+            </span>
+          </div>
+        </div>
+      </Link>
+    </article>
+  );
+}
 
 export default function SelectedWorks() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const groupRef = useRef<HTMLDivElement>(null);
+  const bhOverlayRef = useRef<HTMLDivElement>(null);
+  const bhImageRef = useRef<HTMLImageElement>(null);
+  const bhHintRef = useRef<HTMLDivElement>(null);
+
+  const previews = useMemo<ProjectPreview[]>(
+    () =>
+      featuredOrder.flatMap((id) => {
+        const project = allProjects.find((item) => item.id === id);
+        if (!project) return [];
+        return [{ project, ...previewStyles[id] }];
+      }),
+    [],
+  );
+
+  useEffect(() => {
+    if (!sectionRef.current || !groupRef.current) return;
+
+    const section = sectionRef.current;
+    const group = groupRef.current;
+    const overlay = bhOverlayRef.current;
+    const bhImage = bhImageRef.current;
+    const bhHint = bhHintRef.current;
+    const media = gsap.matchMedia();
+
+    media.add('(prefers-reduced-motion: no-preference)', () => {
+      const ctx = gsap.context(() => {
+        const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+        // Live measurements so the split never depends on build-time layout
+        // (fonts load late, which would otherwise mis-size the text width).
+        const zoomPx = () => window.innerHeight * 1.25; // scroll budget for the zoom
+        const distancePx = () => Math.max(0, group.scrollWidth - window.innerWidth);
+        const totalPx = () => zoomPx() + Math.max(distancePx(), window.innerWidth);
+
+        // One pin, two phases driven manually: (1) fly into the black hole, which
+        // dissolves to reveal the projects already behind it, then (2) the
+        // horizontal parallax. No dead scroll between them.
+        const apply = (progress: number) => {
+          const px = progress * totalPx();
+          const zp = zoomPx();
+          const z = clamp01(px / zp); // zoom phase 0..1
+
+          // Fills the screen at rest (so no dots leak around the outside);
+          // eased so it lingers, then accelerates into the dotted core.
+          gsap.set(bhImage, { scale: 1 + Math.pow(z, 2) * 10, transformOrigin: '50% 50%' });
+          gsap.set(bhHint, { autoAlpha: clamp01(1 - z / 0.35) });
+          // Dissolve the black hole over the deep part of the zoom (z 0.5 -> 0.9).
+          gsap.set(overlay, { autoAlpha: clamp01(1 - (z - 0.5) / 0.4) });
+
+          // Horizontal scroll begins once the zoom budget is spent.
+          const h = Math.max(0, px - zp);
+          gsap.set(group, { x: -Math.min(h, distancePx()) });
+        };
+
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${totalPx()}`,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => apply(self.progress),
+          onRefresh: (self) => apply(self.progress),
+        });
+
+        const refresh = () => ScrollTrigger.refresh();
+        const images = Array.from(section.querySelectorAll('img'));
+        images.forEach((image) => image.addEventListener('load', refresh, { once: true }));
+        if (document.fonts?.ready) document.fonts.ready.then(refresh);
+        refresh();
+      }, section);
+
+      return () => ctx.revert();
+    });
+
+    media.add('(prefers-reduced-motion: reduce)', () => {
+      // No zoom: hide the black hole overlay and show the projects statically.
+      gsap.set(group, { clearProps: 'transform' });
+      if (overlay) gsap.set(overlay, { autoAlpha: 0 });
+    });
+
+    return () => media.revert();
+  }, []);
+
   return (
-    <section id="work" className="bg-bg py-12 md:py-24">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
-        
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16"
+    <section
+      id="work"
+      ref={sectionRef}
+      className="relative min-h-screen overflow-hidden bg-bg text-text-primary"
+    >
+      <div className="relative h-screen min-h-[680px] w-full overflow-hidden">
+        <div className="pointer-events-none absolute left-1/2 top-5 z-40 -translate-x-1/2 text-[11px] uppercase tracking-[0.28em] text-muted">
+          Selected work
+        </div>
+
+        {/* Blue dot grid backdrop. Fixed (doesn't scroll sideways). */}
+        <div className="pointer-events-none absolute inset-0 z-0" style={DOT_FIELD} />
+
+        {/* One moving group: the huge wordmark plus the images pinned onto it.
+            Starts with the text already on-screen so the black hole reveals it. */}
+        <div
+          ref={groupRef}
+          className="absolute inset-y-0 left-0 z-10 flex items-center whitespace-nowrap pl-[10vw] pr-[16vw] will-change-transform"
         >
-          <div className="max-w-xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-8 h-px bg-stroke" />
-              <span className="text-xs text-muted uppercase tracking-[0.3em]">Selected Work</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-body tracking-tight text-text-primary mb-4">
-              Featured <span className="font-display italic">projects</span>
-            </h2>
-            
-            <p className="text-muted text-sm md:text-base">
-              A selection of projects I've worked on, from concept to launch.
-            </p>
-          </div>
-
-          <Link
-            to="/projects"
-            className="hidden md:inline-flex group relative rounded-full text-sm px-6 py-3 bg-surface text-text-primary border border-stroke hover:border-transparent transition-all duration-300"
+          <span
+            className="pointer-events-none relative z-10 text-[34vh] font-medium leading-[0.72] tracking-tight text-text-primary sm:text-[50vh] md:text-[72vh] lg:text-[90vh] xl:text-[98vh]"
+            style={{ fontFamily: marqueeFont, transform: 'translateY(-4vh)' }}
+            aria-hidden="true"
           >
-            <span className="absolute inset-[-1px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300" />
-            <span className="absolute inset-[1px] bg-bg rounded-full opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300" />
-            <div className="relative z-10 flex items-center gap-2">
-              View all work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
-        </motion.div>
+            Here are some of my projects
+          </span>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
-          {projects.map((project, i) => (
-            <MagneticCard
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: "easeOut" }}
-              className={`group bg-surface border border-stroke rounded-3xl cursor-pointer ${project.span} ${project.aspect}`}
-            >
-              {/* Background Image */}
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-
-              {/* Halftone Overlay */}
-              <div 
-                className="absolute inset-0 opacity-20 mix-blend-multiply"
-                style={{
-                  backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
-                  backgroundSize: '4px 4px'
-                }}
-              />
-
-              {/* Hover Darken + Blur */}
-              <div className="absolute inset-0 bg-bg/70 opacity-0 group-hover:opacity-100 backdrop-blur-sm transition-all duration-500 flex items-center justify-center">
-                
-                {/* Hover Label Pill */}
-                <div className="relative transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                  <div className="absolute inset-[-2px] rounded-full accent-gradient animate-gradient-shift background-size-200" />
-                  <div className="relative bg-white text-bg px-5 py-2.5 rounded-full flex items-center gap-2 text-sm font-medium">
-                    View <span className="font-display italic text-base translate-y-[1px]">{project.title}</span>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Click-through to the project's own page */}
-              <Link
-                to={`/projects/${project.id}`}
-                aria-label={`View ${project.title}`}
-                className="absolute inset-0 z-10"
-              />
-            </MagneticCard>
+          {previews.map((preview, index) => (
+            <ProjectCard key={preview.project.id} preview={preview} index={index} />
           ))}
         </div>
 
+        <div className="absolute bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-4 text-muted md:bottom-8">
+          <span className="h-px w-12 bg-stroke" />
+          <Link
+            to="/projects"
+            className="group inline-flex items-center gap-2 whitespace-nowrap text-xs uppercase tracking-[0.24em] transition-colors hover:text-text-primary"
+          >
+            All projects
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <span className="h-px w-12 bg-stroke" />
+        </div>
+
+        {/* Black hole intro overlay — zooms into the core, then dissolves to
+            reveal the projects above. The blue dot grid sits behind it and the
+            image's CORE is masked transparent, so the dots show *inside* the
+            black hole's circle (and nowhere else — the image covers the rest). */}
+        <div ref={bhOverlayRef} className="absolute inset-0 z-50 overflow-hidden bg-bg">
+          <div className="pointer-events-none absolute inset-0" style={DOT_FIELD} />
+          <img
+            ref={bhImageRef}
+            src="/black-hole.jpg"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover will-change-transform"
+            style={{
+              transformOrigin: '50% 50%',
+              maskImage: 'radial-gradient(circle at 50% 50%, transparent 19%, #000 33%)',
+              WebkitMaskImage: 'radial-gradient(circle at 50% 50%, transparent 19%, #000 33%)',
+            }}
+          />
+
+          {/* Blend the section seams into the hero above / projects below. */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-bg to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
+
+          <div
+            ref={bhHintRef}
+            className="pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-white/60"
+          >
+            Scroll into the void
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 import { ThemeProvider } from './context/ThemeProvider';
 import Navbar from './components/Navbar';
@@ -41,17 +45,21 @@ function Layout({ children }: { children: React.ReactNode }) {
       infinite: false,
     } as any);
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+    // Drive Lenis from GSAP's ticker and push every Lenis scroll into
+    // ScrollTrigger. Without this the smooth-scroll position and ScrollTrigger
+    // run on separate clocks, so pinned/scrubbed sections drift and keep
+    // gliding after you stop scrolling.
+    lenis.on('scroll', ScrollTrigger.update);
+    const onTick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(onTick);
+    gsap.ticker.lagSmoothing(0);
 
     // Expose so route changes can reset the scroll position (see ScrollToTop).
     (window as any).__lenis = lenis;
 
     return () => {
+      gsap.ticker.remove(onTick);
+      lenis.off('scroll', ScrollTrigger.update);
       (window as any).__lenis = null;
       lenis.destroy();
     };
