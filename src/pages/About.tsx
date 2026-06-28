@@ -5,7 +5,7 @@ import MagneticCard from '../components/MagneticCard';
 import TravelSection from '../components/TravelSection';
 
 const ABOUT_INTRO_TEXT =
-  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+  "Hey, I’m Aahish Abbani, a freshman at Shrewsbury High School. I currently work as an assistant tutor at Kumon Shrewsbury. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology. My favorite restaurant is Chipotle and my favorite fruit is mangos 🥭!";
 
 function AnimatedIntroCharacter({
   char,
@@ -67,6 +67,9 @@ type TimelineEventData = {
     position?: string;
     fit?: "cover" | "contain";
     aspect?: "wide" | "square";
+    callout?: {
+      text: string;
+    };
   };
   sideAccent?: "car";
 };
@@ -122,6 +125,67 @@ function TimelineImage({ image }: { image: NonNullable<TimelineEventData['image'
         style={{ objectPosition: image.position ?? "center" }}
         className={`h-full w-full ${image.fit === "contain" ? "object-contain bg-black" : "object-cover"}`}
       />
+      {image.callout ? (
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-10"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.72 }}
+        >
+          <motion.svg
+            aria-hidden="true"
+            viewBox="0 0 100 75"
+            preserveAspectRatio="none"
+            className="absolute inset-0 h-full w-full overflow-visible"
+          >
+            <motion.path
+              d="M 21 18 C 18 25, 22 31, 33 35"
+              fill="none"
+              stroke="#F8FAFC"
+              strokeWidth="2.35"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+              variants={{
+                hidden: { pathLength: 0, opacity: 0 },
+                show: { pathLength: 1, opacity: 1 },
+              }}
+              transition={{ duration: 0.7, delay: 0.32, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 33 35 L 27.8 33.7 M 33 35 L 30.2 30.4"
+              fill="none"
+              stroke="#F8FAFC"
+              strokeWidth="2.35"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+              variants={{
+                hidden: { pathLength: 0, opacity: 0 },
+                show: { pathLength: 1, opacity: 1 },
+              }}
+              transition={{ duration: 0.28, delay: 0.95, ease: "easeOut" }}
+            />
+          </motion.svg>
+
+          <motion.div
+            className="absolute left-[5%] top-[6%] max-w-[56%]"
+            variants={{
+              hidden: { opacity: 0, y: 12, scale: 0.82, rotate: -4 },
+              show: { opacity: 1, y: 0, scale: 1, rotate: -2 },
+            }}
+            transition={{ type: "spring", stiffness: 420, damping: 18, delay: 0.12 }}
+          >
+            <motion.div
+              animate={{ y: [0, -4, 0], rotate: [-2, 1, -2] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+              className="rounded-full border border-white/35 bg-[#4E85BF]/68 px-3.5 py-2 text-[clamp(0.72rem,2.8vw,0.92rem)] font-semibold leading-none text-white shadow-[0_12px_32px_rgba(0,0,0,0.45)] backdrop-blur-md sm:px-4 sm:py-2.5"
+            >
+              {image.callout.text}
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      ) : null}
       <motion.div
         aria-hidden="true"
         style={{ x: sheenX, opacity: sheenOpacity }}
@@ -266,6 +330,9 @@ const events: TimelineEventData[] = [
     image: {
       src: "/about/middle-school-graduation.jpeg",
       alt: "Middle school graduation in June 2025",
+      callout: {
+        text: "That's my mom!",
+      },
     },
   },
   {

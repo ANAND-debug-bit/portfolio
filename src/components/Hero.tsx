@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import gsap from 'gsap';
 import { MousePointer2 } from 'lucide-react';
@@ -53,7 +53,7 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
     return () => clearInterval(roleInterval);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // GSAP Entrance (Run when loading is complete)
     if (isLoading) return;
 

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useLayoutEffect, useMemo, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
@@ -149,7 +149,7 @@ export default function SelectedWorks() {
     [],
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!sectionRef.current || !groupRef.current) return;
 
     const section = sectionRef.current;

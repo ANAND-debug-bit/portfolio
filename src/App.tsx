@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -26,6 +26,12 @@ function ScrollToTop() {
     const lenis = (window as any).__lenis;
     if (lenis) lenis.scrollTo(0, { immediate: true });
     window.scrollTo(0, 0);
+
+    const refreshId = window.requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    return () => window.cancelAnimationFrame(refreshId);
   }, [pathname]);
   return null;
 }
@@ -78,12 +84,13 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const handleLoadingComplete = useCallback(() => setIsLoading(false), []);
 
   return (
     <ThemeProvider>
       <BrowserRouter>
         <ScrollToTop />
-        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+        {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
         <Layout>
           <Routes>
             <Route path="/" element={<Home isLoading={isLoading} />} />
