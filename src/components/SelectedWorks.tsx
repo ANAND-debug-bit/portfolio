@@ -276,8 +276,36 @@ export default function SelectedWorks() {
             className="absolute inset-0 h-full w-full object-cover will-change-transform"
             style={{
               transformOrigin: '50% 50%',
-              maskImage: 'radial-gradient(circle at 50% 50%, transparent 19%, #000 33%)',
-              WebkitMaskImage: 'radial-gradient(circle at 50% 50%, transparent 19%, #000 33%)',
+              // Radius in vh so the dot-revealing core tracks the image's black
+              // centre at any aspect ratio. The image is 2:1 and `object-cover`
+              // scales it by height on virtually every viewport, so the on-screen
+              // core is ~height-proportional — percentages (of farthest-corner)
+              // drifted out of sync on tall phones, shrinking the hole.
+              maskImage: 'radial-gradient(circle at 50% 50%, transparent 20vh, #000 34vh)',
+              WebkitMaskImage: 'radial-gradient(circle at 50% 50%, transparent 20vh, #000 34vh)',
+            }}
+          />
+
+          {/* Lift the JPG's pure-black space (#000) up to the site background
+              (a touch lighter than black) so the section's surround matches the
+              hero above instead of reading darker. `lighten` only raises pixels
+              darker than --bg, leaving the stars and blue glow untouched. Dark
+              theme only — in light mode --bg is near-white and would wash it out. */}
+          <div
+            className="pointer-events-none absolute inset-0 hidden mix-blend-lighten dark:block"
+            style={{ background: 'var(--bg)' }}
+          />
+
+          {/* Fade the image's textured outer field (stars / blue tint) out to the
+              flat site background, so the surround is the SAME flat colour as the
+              hero — not just a matched black, but actually seamless. Centre stays
+              clear so the black hole + glow are untouched. Uses var(--bg), so it
+              is correct in both light and dark themes. */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(circle at 50% 50%, transparent 40vh, var(--bg) 72vh)',
             }}
           />
 
