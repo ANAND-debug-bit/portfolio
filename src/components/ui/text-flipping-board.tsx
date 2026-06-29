@@ -77,10 +77,11 @@ const FlapCell = React.memo(function FlapCell({
     const useCompactMotion = compactMotionRef.current;
     const scrambleCount =
       useCompactMotion
-        ? 1
+        ? 2
         : normalized === " "
           ? 8 + Math.floor(Math.random() * 8)
           : 25 + Math.floor(Math.random() * 15);
+    const compactAccent = ACCENT_COLORS[0];
 
     const runStep = (i: number) => {
       const isLast = i === scrambleCount;
@@ -90,9 +91,11 @@ const FlapCell = React.memo(function FlapCell({
 
       const newAccent = isLast
         ? null
-        : Math.random() < 0.2
-          ? ACCENT_COLORS[Math.floor(Math.random() * ACCENT_COLORS.length)]
-          : null;
+        : useCompactMotion
+          ? compactAccent
+          : Math.random() < 0.2
+            ? ACCENT_COLORS[Math.floor(Math.random() * ACCENT_COLORS.length)]
+            : null;
 
       setPrev(curRef.current);
       setPrevAccent(accentRef.current);
@@ -395,7 +398,7 @@ export function TextFlippingBoard({
   const rowDelay = BASE_ROW_DELAY * scale;
   const stepMs = BASE_STEP_MS * scale;
   const flipDur = Math.min(0.6, Math.max(0.15, BASE_FLIP_S * scale));
-  const compactMotion = cols <= 11;
+  const compactMotion = cols < BOARD_COLS;
 
   // Size the glyph from the actual cell width so it scales with the column
   // count, not just the viewport.

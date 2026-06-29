@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef } from 'react';
+import { type CSSProperties, useLayoutEffect, useMemo, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
@@ -14,6 +14,7 @@ type ProjectPreview = {
   size: string;
   left: string; // horizontal position along the wordmark (% of the group)
   top: string; // vertical position (% of viewport height)
+  mobileTop?: string; // phone-specific vertical position
   rotation: string;
   imageFit: string;
   layer: 'front' | 'back';
@@ -25,15 +26,16 @@ const featuredOrder = ['om-daily', 'kastrals', 'medora', 'khet', 'haven'] as con
 
 const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
   'om-daily': {
-    size: 'w-[200px] sm:w-[230px] md:w-[260px] lg:w-[290px] aspect-[3/4]',
+    size: 'w-[145px] min-[430px]:w-[160px] sm:w-[230px] md:w-[260px] lg:w-[290px] aspect-[3/4]',
     left: '15%',
     top: '40%',
+    mobileTop: '31%',
     rotation: '-rotate-3',
     imageFit: 'object-cover',
     layer: 'front',
   },
   kastrals: {
-    size: 'w-[330px] sm:w-[410px] md:w-[480px] lg:w-[540px] aspect-[16/10]',
+    size: 'w-[220px] min-[430px]:w-[245px] sm:w-[410px] md:w-[480px] lg:w-[540px] aspect-[16/10]',
     left: '33%',
     top: '66%',
     rotation: '-rotate-2',
@@ -41,7 +43,7 @@ const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
     layer: 'front',
   },
   medora: {
-    size: 'w-[200px] sm:w-[235px] md:w-[265px] lg:w-[295px] aspect-[3/4]',
+    size: 'w-[145px] min-[430px]:w-[162px] sm:w-[235px] md:w-[265px] lg:w-[295px] aspect-[3/4]',
     left: '51%',
     top: '32%',
     rotation: 'rotate-2',
@@ -49,7 +51,7 @@ const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
     layer: 'front',
   },
   khet: {
-    size: 'w-[325px] sm:w-[405px] md:w-[470px] lg:w-[520px] aspect-[16/10]',
+    size: 'w-[220px] min-[430px]:w-[245px] sm:w-[405px] md:w-[470px] lg:w-[520px] aspect-[16/10]',
     left: '69%',
     top: '62%',
     rotation: 'rotate-3',
@@ -57,9 +59,10 @@ const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
     layer: 'front',
   },
   haven: {
-    size: 'w-[300px] sm:w-[360px] md:w-[410px] lg:w-[450px] aspect-[4/3]',
+    size: 'w-[215px] min-[430px]:w-[240px] sm:w-[360px] md:w-[410px] lg:w-[450px] aspect-[4/3]',
     left: '88%',
     top: '42%',
+    mobileTop: '32%',
     rotation: '-rotate-3',
     imageFit: 'object-cover',
     layer: 'front',
@@ -78,16 +81,22 @@ const DOT_FIELD = {
 } as const;
 
 function ProjectCard({ preview, index }: { preview: ProjectPreview; index: number }) {
-  const { project, size, left, top, rotation, imageFit, layer } = preview;
+  const { project, size, left, top, mobileTop, rotation, imageFit, layer } = preview;
   return (
     <article
       className={cn(
-        'absolute -translate-x-1/2 -translate-y-1/2',
+        'absolute left-[var(--preview-left)] top-[var(--preview-mobile-top)] -translate-x-1/2 -translate-y-1/2 sm:top-[var(--preview-top)]',
         size,
         rotation,
         layer === 'back' ? 'z-0' : 'z-20',
       )}
-      style={{ left, top }}
+      style={
+        {
+          '--preview-left': left,
+          '--preview-top': top,
+          '--preview-mobile-top': mobileTop ?? top,
+        } as CSSProperties
+      }
     >
       <Link
         to={`/projects/${project.id}`}
@@ -105,24 +114,24 @@ function ProjectCard({ preview, index }: { preview: ProjectPreview; index: numbe
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/8 to-transparent opacity-80" />
 
-        <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.24em] text-white/70 sm:left-5 sm:right-5 sm:top-5">
+        <div className="absolute left-3 right-3 top-3 flex items-center justify-between gap-2 text-[8px] uppercase tracking-[0.2em] text-white/70 sm:left-5 sm:right-5 sm:top-5 sm:text-[10px] sm:tracking-[0.24em]">
           <span>{String(index + 1).padStart(2, '0')}</span>
           {project.year && <span className="text-right">{project.year}</span>}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6">
-          <div className="mb-2 text-[10px] uppercase tracking-[0.24em] text-white/60">
+        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5 md:p-6">
+          <div className="mb-1.5 text-[8px] uppercase tracking-[0.2em] text-white/60 sm:mb-2 sm:text-[10px] sm:tracking-[0.24em]">
             {project.type}
           </div>
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex items-end justify-between gap-2 sm:gap-4">
             <h3
-              className="text-4xl leading-none tracking-normal text-white md:text-5xl"
+              className="text-2xl leading-none tracking-normal text-white min-[430px]:text-3xl sm:text-4xl md:text-5xl"
               style={{ fontFamily: marqueeFont }}
             >
               {project.name}
             </h3>
-            <span className="mb-1 flex size-9 shrink-0 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-              <ArrowUpRight className="size-4" />
+            <span className="mb-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 sm:mb-1 sm:size-9">
+              <ArrowUpRight className="size-3.5 sm:size-4" />
             </span>
           </div>
         </div>

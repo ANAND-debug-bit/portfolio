@@ -66,11 +66,11 @@ function LanguageComposition({ languages }: { languages?: Project['languages'] }
           </div>
         </div>
 
-        <ul className="grid min-w-0 gap-2.5">
+        <ul className="grid min-w-0 justify-start gap-2.5 sm:justify-stretch">
           {visibleLanguages.map((language) => (
             <li
               key={language.name}
-              className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2.5"
+              className="grid w-fit max-w-full grid-cols-[auto_auto_auto] items-center gap-2.5 sm:w-full sm:grid-cols-[auto_minmax(0,1fr)_auto]"
             >
               <span
                 className="h-2.5 w-2.5 rounded-full"

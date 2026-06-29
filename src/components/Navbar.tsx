@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
@@ -51,16 +50,6 @@ export default function Navbar() {
             );
           })}
         </div>
-
-        <div className="hidden sm:block w-px h-5 bg-stroke mx-2 shrink-0" />
-
-        {/* Say Hi Button - Hidden on mobile */}
-        <Link to="/contact" className="hidden sm:inline-flex group relative rounded-full text-sm px-4 py-1.5 text-text-primary mr-0.5 font-medium shrink-0">
-          <span className="absolute inset-[-1.5px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <div className="relative flex items-center gap-1.5 bg-surface rounded-full backdrop-blur-md px-4 py-1.5">
-            Say hi <ArrowUpRight className="w-3.5 h-3.5" />
-          </div>
-        </Link>
 
         <div className="w-px h-4 md:h-5 bg-stroke mx-1 md:mx-2 shrink-0" />
 
