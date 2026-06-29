@@ -117,7 +117,7 @@ export default function ProjectDetail() {
   }
 
   // Cover first, then the rest — the whole deck the carousel flips through.
-  const images = [projectImageSrc(project), ...(project.gallery ?? [])];
+  const media = [projectImageSrc(project), ...(project.gallery ?? [])];
 
   // The next project in the list — gives the page a natural "keep browsing" end.
   const currentIndex = projects.findIndex((p) => p.id === project.id);
@@ -194,7 +194,7 @@ export default function ProjectDetail() {
           transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
           className="mt-8 md:mt-11"
         >
-          <ProjectCarousel images={images} alt={project.name} />
+          <ProjectCarousel media={media} alt={project.name} />
         </motion.div>
 
         {/* Award ribbon */}

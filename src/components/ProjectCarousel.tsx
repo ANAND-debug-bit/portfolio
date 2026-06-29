@@ -7,10 +7,18 @@ import 'swiper/css/effect-cards';
 
 import { cn } from '../lib/utils';
 
+const VIDEO_EXTENSIONS = /\.(mov|mp4|m4v|webm)$/i;
+
+function isVideoSource(src: string) {
+  return VIDEO_EXTENSIONS.test(src.split('?')[0]);
+}
+
 /** Learn an image's orientation once it has loaded, so we can size the card. */
 function useOrientation(src: string) {
   const [isPortrait, setIsPortrait] = useState<boolean | null>(null);
   useEffect(() => {
+    if (isVideoSource(src)) return;
+
     let alive = true;
     const img = new Image();
     img.onload = () => {
@@ -30,20 +38,29 @@ function useOrientation(src: string) {
  * a taller phone crop, then settle into their natural ratio on wider screens.
  */
 export default function ProjectCarousel({
-  images,
+  media,
   alt,
 }: {
-  images: string[];
+  media: string[];
   alt: string;
 }) {
   const swiperRef = useRef<SwiperRef>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   // Size the deck to the cover image's shape: tall for phone apps, wide for web.
-  const isPortrait = useOrientation(images[0]);
+  const isPortrait = useOrientation(media[0]);
 
-  if (images.length === 0) return null;
+  if (media.length === 0) return null;
 
-  const single = images.length === 1;
+  const single = media.length === 1;
+  const handleSlideChange = (index: number) => {
+    setActive(index);
+    carouselRef.current?.querySelectorAll('video').forEach((video) => {
+      if (!video.closest(`[data-slide-index="${index}"]`)) {
+        video.pause();
+      }
+    });
+  };
 
   const deckSize = isPortrait
     ? 'h-[min(76vh,660px)] min-h-[520px] w-[min(88vw,340px)] sm:h-[720px] sm:w-[374px] lg:h-[780px] lg:w-[405px]'
@@ -54,7 +71,7 @@ export default function ProjectCarousel({
 
   return (
     <div className="flex w-full flex-col items-center">
-      <div className={cn('relative', deckSize)}>
+      <div ref={carouselRef} className={cn('relative', deckSize)}>
         <Swiper
           ref={swiperRef}
           effect="cards"
@@ -62,30 +79,42 @@ export default function ProjectCarousel({
           modules={[EffectCards]}
           cardsEffect={{ slideShadows: false, perSlideOffset: 9, perSlideRotate: 3 }}
           allowTouchMove={!single}
-          onSlideChange={(s) => setActive(s.activeIndex)}
+          onSlideChange={(s) => handleSlideChange(s.activeIndex)}
           className="h-full w-full"
         >
-          {images.map((src, i) => (
+          {media.map((src, i) => (
             <SwiperSlide
               key={src}
+              data-slide-index={i}
               className="overflow-hidden rounded-[1.35rem] border border-stroke bg-bg shadow-[0_22px_60px_-38px_rgba(0,0,0,0.65)]"
             >
-              <img
-                src={src}
-                alt={`${alt} — image ${i + 1}`}
-                className={cn('absolute inset-0 h-full w-full', imageClassName)}
-              />
+              {isVideoSource(src) ? (
+                <video
+                  src={src}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${alt} demo video ${i + 1}`}
+                  className={cn('absolute inset-0 h-full w-full bg-black', imageClassName)}
+                />
+              ) : (
+                <img
+                  src={src}
+                  alt={`${alt} image ${i + 1}`}
+                  className={cn('absolute inset-0 h-full w-full', imageClassName)}
+                />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* Controls — arrows + counter, only when there's more than one image. */}
+      {/* Controls — arrows + counter, only when there's more than one media item. */}
       {!single && (
         <div className="mt-6 flex items-center gap-4">
           <button
             type="button"
-            aria-label="Previous image"
+            aria-label="Previous media item"
             onClick={() => swiperRef.current?.swiper.slidePrev()}
             className="inline-flex size-10 items-center justify-center rounded-full border border-stroke bg-surface/60 text-text-primary backdrop-blur-md transition-colors hover:bg-stroke/50"
           >
@@ -93,12 +122,12 @@ export default function ProjectCarousel({
           </button>
 
           <span className="min-w-[3.5rem] text-center font-mono text-xs tracking-[0.2em] text-muted">
-            {String(active + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+            {String(active + 1).padStart(2, '0')} / {String(media.length).padStart(2, '0')}
           </span>
 
           <button
             type="button"
-            aria-label="Next image"
+            aria-label="Next media item"
             onClick={() => swiperRef.current?.swiper.slideNext()}
             className="inline-flex size-10 items-center justify-center rounded-full border border-stroke bg-surface/60 text-text-primary backdrop-blur-md transition-colors hover:bg-stroke/50"
           >

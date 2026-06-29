@@ -46,7 +46,7 @@ export default function ContactPage() {
             </svg>
           </h1>
           <p className="text-muted text-lg max-w-xl mx-auto mb-12">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            I’m always open to discussing new project ideas, opportunities, collaborations, or just having a good conversation.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">

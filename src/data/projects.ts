@@ -138,6 +138,7 @@ export const projects: Project[] = [
     tags: ['Mobile', 'Swift', 'NFC', 'Screen Time', 'B2C'],
     image: '/projects/taplock/1.png',
     gallery: [
+      '/projects/taplock/demo.MOV',
       '/projects/taplock/2.png',
       '/projects/taplock/3.png',
       '/projects/taplock/4.png',
