@@ -10,6 +10,7 @@ import { ThemeProvider } from './context/ThemeProvider';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+import Seo from './components/Seo';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -89,6 +90,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        <Seo />
         <ScrollToTop />
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
         <Layout>
