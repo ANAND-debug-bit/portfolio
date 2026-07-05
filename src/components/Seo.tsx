@@ -5,11 +5,11 @@ import { projects } from '../data/projects';
 const SITE_URL = 'https://aahishabbani.me';
 const SITE_NAME = 'Aahish Abbani';
 const DEFAULT_IMAGE = `${SITE_URL}/black-hole.jpg`;
-const DEFAULT_TITLE = 'Aahish Abbani | Student Founder, Developer, App Builder, and AI Projects';
+const DEFAULT_TITLE = 'Aahish Abbani';
 const DEFAULT_DESCRIPTION =
-  'Aahish Abbani is a student founder and developer who enjoys building apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more.';
+  'Aahish Abbani builds apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more.';
 const DEFAULT_SOCIAL_DESCRIPTION =
-  'Student founder and developer building apps, websites, AI tools, and hardware projects.';
+  'Apps, websites, AI tools, and hardware projects by Aahish Abbani.';
 
 type RouteMetadata = {
   title: string;
@@ -73,15 +73,15 @@ function routeMetadata(pathname: string): RouteMetadata {
       return {
         title: DEFAULT_TITLE,
         description: DEFAULT_DESCRIPTION,
-        socialTitle: 'Aahish Abbani | Student Founder and Developer',
+        socialTitle: 'Aahish Abbani',
         socialDescription: DEFAULT_SOCIAL_DESCRIPTION,
         path: '/',
       };
     case '/about':
       return {
-        title: 'About Aahish Abbani | Student Founder and Developer',
+        title: 'About Aahish Abbani',
         description:
-          'Learn more about Aahish Abbani, a student founder and developer in Massachusetts who builds apps, websites, AI tools, and creative technology projects.',
+          'Learn more about Aahish Abbani and the apps, websites, AI tools, and creative technology projects he builds.',
         socialTitle: 'About Aahish Abbani',
         path,
       };
@@ -97,7 +97,7 @@ function routeMetadata(pathname: string): RouteMetadata {
       return {
         title: 'Contact Aahish Abbani',
         description:
-          'Contact Aahish Abbani for projects, collaborations, app ideas, AI tools, websites, and student founder work.',
+          'Contact Aahish Abbani for projects, collaborations, app ideas, AI tools, and websites.',
         socialTitle: 'Contact Aahish Abbani',
         path,
       };
@@ -105,7 +105,7 @@ function routeMetadata(pathname: string): RouteMetadata {
       return {
         title: DEFAULT_TITLE,
         description: DEFAULT_DESCRIPTION,
-        socialTitle: 'Aahish Abbani | Student Founder and Developer',
+        socialTitle: 'Aahish Abbani',
         socialDescription: DEFAULT_SOCIAL_DESCRIPTION,
         path,
       };
