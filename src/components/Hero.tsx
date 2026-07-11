@@ -244,7 +244,7 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
 
           {/* Sits over the dark hero image — kept white in both themes. */}
           <h1 className="name-reveal text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-white mb-6 opacity-0">
-            <span ref={firstNameRef} className="inline-block">Aahish</span>{' '}Abbani
+            <span ref={firstNameRef} className="inline-block">Atharv</span>{' '}Anand
           </h1>
         </div>
 
