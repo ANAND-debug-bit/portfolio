@@ -253,7 +253,7 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
           <span key={roleIndex} className="font-display italic text-white animate-role-fade-in inline-block px-1">
             {roles[roleIndex]}
           </span>
-          {' '}who lives in Massachusetts.
+          {' '}who lives in Delhi.
         </div>
 
 
