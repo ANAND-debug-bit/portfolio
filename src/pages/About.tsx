@@ -5,7 +5,7 @@ import MagneticCard from '../components/MagneticCard';
 import TravelSection from '../components/TravelSection';
 
 const ABOUT_INTRO_TEXT =
-  "Hey, I’m Aahish Abbani, a sophomore at Shrewsbury High School. I currently work as an assistant tutor at Kumon Shrewsbury. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology. My favorite restaurant is Chipotle and my favorite fruit is mangos 🥭!";
+  "Hey, I’m Atharv Anand, a sophomore at Shrewsbury High School. I currently work as an assistant tutor at Kumon Shrewsbury. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology. My favorite restaurant is Chipotle and my favorite fruit is mangos 🥭!";
 
 function AnimatedIntroCharacter({
   char,
