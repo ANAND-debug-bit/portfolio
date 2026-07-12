@@ -172,12 +172,12 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
       revealName(tl, ">");
 
       // 4. Once everything has landed, the 👋 gets sucked up into the black hole
-      // at the very top-center. "Hey, I'm Aahish Abbani" stays put (for now).
+      // at the very top-center. "Hey, I'm Atharv Anand" stays put (for now).
       if (hand && handCenter) {
         addVortex(hand, handCenter, 0.65, "-=0.1");
       }
 
-      // 5. Then "Aahish" (first name only) gets sucked into the black hole the
+      // 5. Then "Atharv" (first name only) gets sucked into the black hole the
       // same way... and a cursor rises up, grabs it back out, and drops it back
       // into place. "Abbani" never moves.
       if (firstName && nameCenter && cursor) {
@@ -260,7 +260,7 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
 
       </div>
 
-      {/* Cursor used to fetch "Aahish" back out of the black hole. */}
+      {/* Cursor used to fetch "Atharv" back out of the black hole. */}
       <div
         ref={cursorRef}
         className="absolute top-0 left-0 z-20 text-white opacity-0 pointer-events-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]"

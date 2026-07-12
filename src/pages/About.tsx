@@ -5,7 +5,7 @@ import MagneticCard from '../components/MagneticCard';
 import TravelSection from '../components/TravelSection';
 
 const ABOUT_INTRO_TEXT =
-  "Hey, I’m Atharv Anand, a sophomore at Shrewsbury High School. I currently work as an assistant tutor at Kumon Shrewsbury. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology. My favorite restaurant is Chipotle and my favorite fruit is mangos 🥭!";
+  "Hey, I’m Atharv Anand, a first-year B.Tech Computer Science student, previously at Tagore Senior Secondary School. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology.";
 
 function AnimatedIntroCharacter({
   char,
@@ -273,7 +273,7 @@ const events: TimelineEventData[] = [
     description: "I was born December 3rd, 2010, in Boston, Massachusetts.",
     image: {
       src: "/about/beginning.jpeg",
-      alt: "Newborn photo of Aahish",
+      alt: "Newborn photo of Atharv",
     },
   },
   {

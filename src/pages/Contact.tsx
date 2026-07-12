@@ -3,10 +3,10 @@ import { FaInstagram, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { ArrowUpRight } from 'lucide-react';
 
 const socials = [
-  { name: "Instagram", handle: "@aahishabbani", url: "https://www.instagram.com/aahishabbani/", icon: FaInstagram },
-  { name: "X (Twitter)", handle: "@AahishAbbani", url: "https://x.com/AahishAbbani", icon: FaTwitter },
-  { name: "LinkedIn", handle: "Aahish Abbani", url: "https://www.linkedin.com/in/aahish-abbani/", icon: FaLinkedin },
-  { name: "GitHub", handle: "kinghightech", url: "https://github.com/kinghightech", icon: FaGithub }
+  { name: "Instagram", handle: "@v.a.j.r.a_07", url: "https://www.instagram.com/v.a.j.r.a_07/", icon: FaInstagram },
+  { name: "X (Twitter)", handle: "@ATHARV_ANAND_", url: "https://x.com/ATHARV_ANAND_", icon: FaTwitter },
+  { name: "LinkedIn", handle: "Atharv Anand", url: "https://www.linkedin.com/in/atharv-anand-318716336/", icon: FaLinkedin },
+  { name: "GitHub", handle: "ANAND-debug-bit", url: "https://github.com/ANAND-debug-bit", icon: FaGithub }
 ];
 
 export default function ContactPage() {
@@ -51,13 +51,13 @@ export default function ContactPage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <a 
-              href="mailto:aahish.abbani@icloud.com"
+              href="mailto:atharvanand37@gmail.com"
               className="group relative inline-flex rounded-full text-lg md:text-xl px-8 py-4 bg-surface text-text-primary transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(78,133,191,0.3)]"
             >
               <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
               <span className="absolute inset-[2px] bg-bg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
               <div className="relative z-10 flex items-center gap-3 font-medium">
-                aahish.abbani@icloud.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                atharvanand37@gmail.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </div>
             </a>
 

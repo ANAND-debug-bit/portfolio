@@ -1,10 +1,10 @@
-# Aahish's Portfolio Website
+# Atharv Anand's Portfolio Website
 
 Welcome to my portfolio! This is a modern, animated portfolio website showcasing my projects, work, and explorations in web development and technology. It's built with cutting-edge web technologies and packed with smooth animations and interactive elements that make browsing through my work actualyl enjoyable.trust me its really tuff!
 
 ## About This Project
 
-This portfolio website is a personal project I built to showcase my work as a sophomore at Shrewsbury High School who's passionate about coding, technology, and building cool stuff on the internet. When I'm not working as an assistant tutor at Kumon Shrewsbury, I'm usually tinkering with code, listening to music, or thinking about my next big project idea.
+This portfolio website is a personal project I built to showcase my work as a first-year B.Tech Computer Science student, previously at Tagore Senior Secondary School, who's passionate about coding, technology, and building cool stuff on the internet. When I'm not tinkering with code, I'm usually listening to music or thinking about my next big project idea.
 
 The whole site is designed to be responsive, fast, and filled with delightful interations that make it stand out from your typical portfolio template. I wanted something that felt personal and reflected my personality—something more than just a static list of projects.
 
@@ -182,7 +182,7 @@ I'm always thinking about ways to improve this portfolio:
 
 ## Credits
 
-I, Aahish, wrote most of the code for this portfolio, including all the component logic, routing, animations setup, and overall architecture. I used AI to generate parts of the UI components and styling, which helped me move faster on the visual design side while I focused on the more complex interactivity and animation logic.
+I, Atharv, wrote most of the code for this portfolio, including all the component logic, routing, animations setup, and overall architecture. I used AI to generate parts of the UI components and styling, which helped me move faster on the visual design side while I focused on the more complex interactivity and animation logic.
 
 ## Contact
 
@@ -190,4 +190,4 @@ Want to reach out? Head over to the [Contact page](/) to get in touch. I'm alway
 
 ---
 
-Built with ❤️ by Aahish Abbani
+Built with ❤️ by Atharv Anand

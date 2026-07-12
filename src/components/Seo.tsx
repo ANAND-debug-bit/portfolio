@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { projects } from '../data/projects';
 
 const SITE_URL = 'https://aahishabbani.me';
-const SITE_NAME = 'Aahish Abbani';
+const SITE_NAME = 'Atharv Anand';
 const DEFAULT_IMAGE = `${SITE_URL}/black-hole.jpg`;
-const DEFAULT_TITLE = 'Aahish Abbani';
+const DEFAULT_TITLE = 'Atharv Anand';
 const DEFAULT_DESCRIPTION =
-  'Aahish Abbani builds apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more.';
+  'Atharv Anand builds apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more.';
 const DEFAULT_SOCIAL_DESCRIPTION =
-  'Apps, websites, AI tools, and hardware projects by Aahish Abbani.';
+  'Apps, websites, AI tools, and hardware projects by Atharv Anand.';
 
 type RouteMetadata = {
   title: string;
@@ -59,9 +59,9 @@ function routeMetadata(pathname: string): RouteMetadata {
     const project = projects.find((item) => item.id === decodeURIComponent(projectMatch[1]));
     if (project) {
       return {
-        title: `${project.name} | Aahish Abbani`,
+        title: `${project.name} | Atharv Anand`,
         description: project.description,
-        socialTitle: `${project.name} by Aahish Abbani`,
+        socialTitle: `${project.name} by Atharv Anand`,
         path,
         image: project.image ? absoluteUrl(project.image) : DEFAULT_IMAGE,
       };
@@ -73,39 +73,39 @@ function routeMetadata(pathname: string): RouteMetadata {
       return {
         title: DEFAULT_TITLE,
         description: DEFAULT_DESCRIPTION,
-        socialTitle: 'Aahish Abbani',
+        socialTitle: 'Atharv Anand',
         socialDescription: DEFAULT_SOCIAL_DESCRIPTION,
         path: '/',
       };
     case '/about':
       return {
-        title: 'About Aahish Abbani',
+        title: 'About Atharv Anand',
         description:
-          'Learn more about Aahish Abbani and the apps, websites, AI tools, and creative technology projects he builds.',
-        socialTitle: 'About Aahish Abbani',
+          'Learn more about Atharv Anand and the apps, websites, AI tools, and creative technology projects he builds.',
+        socialTitle: 'About Atharv Anand',
         path,
       };
     case '/projects':
       return {
-        title: 'Projects | Aahish Abbani',
+        title: 'Projects | Atharv Anand',
         description:
-          'Explore apps, websites, AI tools, and technical projects by Aahish Abbani, including Om Daily, TapLock, Khet, Medora, and more.',
-        socialTitle: 'Projects by Aahish Abbani',
+          'Explore apps, websites, AI tools, and technical projects by Atharv Anand, including Om Daily, TapLock, Khet, Medora, and more.',
+        socialTitle: 'Projects by Atharv Anand',
         path,
       };
     case '/contact':
       return {
-        title: 'Contact Aahish Abbani',
+        title: 'Contact Atharv Anand',
         description:
-          'Contact Aahish Abbani for projects, collaborations, app ideas, AI tools, and websites.',
-        socialTitle: 'Contact Aahish Abbani',
+          'Contact Atharv Anand for projects, collaborations, app ideas, AI tools, and websites.',
+        socialTitle: 'Contact Atharv Anand',
         path,
       };
     default:
       return {
         title: DEFAULT_TITLE,
         description: DEFAULT_DESCRIPTION,
-        socialTitle: 'Aahish Abbani',
+        socialTitle: 'Atharv Anand',
         socialDescription: DEFAULT_SOCIAL_DESCRIPTION,
         path,
       };

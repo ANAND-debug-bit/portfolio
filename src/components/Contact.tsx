@@ -134,13 +134,13 @@ export default function Contact() {
         </h2>
 
         <a 
-          href="mailto:aahish.abbani@icloud.com"
+          href="mailto:atharvanand37@gmail.com"
           className="group relative inline-flex rounded-full text-base md:text-lg px-8 py-4 bg-surface text-text-primary transition-all duration-300 hover:scale-105"
         >
           <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
           <span className="absolute inset-[2px] bg-bg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
           <div className="relative z-10 flex items-center gap-2 font-medium">
-            aahish.abbani@icloud.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            atharvanand37@gmail.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </div>
         </a>
 
