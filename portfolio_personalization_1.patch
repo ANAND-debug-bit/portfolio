@@ -1,0 +1,321 @@
+diff --git a/README.md b/README.md
+index b293c6a..18ebb48 100644
+--- a/README.md
++++ b/README.md
+@@ -1,10 +1,10 @@
+-# Aahish's Portfolio Website
++# Atharv Anand's Portfolio Website
+ 
+ Welcome to my portfolio! This is a modern, animated portfolio website showcasing my projects, work, and explorations in web development and technology. It's built with cutting-edge web technologies and packed with smooth animations and interactive elements that make browsing through my work actualyl enjoyable.trust me its really tuff!
+ 
+ ## About This Project
+ 
+-This portfolio website is a personal project I built to showcase my work as a sophomore at Shrewsbury High School who's passionate about coding, technology, and building cool stuff on the internet. When I'm not working as an assistant tutor at Kumon Shrewsbury, I'm usually tinkering with code, listening to music, or thinking about my next big project idea.
++This portfolio website is a personal project I built to showcase my work as a first-year B.Tech Computer Science student, previously at Tagore Senior Secondary School, who's passionate about coding, technology, and building cool stuff on the internet. When I'm not tinkering with code, I'm usually listening to music or thinking about my next big project idea.
+ 
+ The whole site is designed to be responsive, fast, and filled with delightful interations that make it stand out from your typical portfolio template. I wanted something that felt personal and reflected my personality—something more than just a static list of projects.
+ 
+@@ -182,7 +182,7 @@ I'm always thinking about ways to improve this portfolio:
+ 
+ ## Credits
+ 
+-I, Aahish, wrote most of the code for this portfolio, including all the component logic, routing, animations setup, and overall architecture. I used AI to generate parts of the UI components and styling, which helped me move faster on the visual design side while I focused on the more complex interactivity and animation logic.
++I, Atharv, wrote most of the code for this portfolio, including all the component logic, routing, animations setup, and overall architecture. I used AI to generate parts of the UI components and styling, which helped me move faster on the visual design side while I focused on the more complex interactivity and animation logic.
+ 
+ ## Contact
+ 
+@@ -190,4 +190,4 @@ Want to reach out? Head over to the [Contact page](/) to get in touch. I'm alway
+ 
+ ---
+ 
+-Built with ❤️ by Aahish Abbani
++Built with ❤️ by Atharv Anand
+diff --git a/index.html b/index.html
+index bc28c4e..28916d7 100644
+--- a/index.html
++++ b/index.html
+@@ -7,26 +7,26 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta
+       name="description"
+-      content="Aahish Abbani builds apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more."
++      content="Atharv Anand builds apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more."
+     />
+-    <meta name="author" content="Aahish Abbani" />
++    <meta name="author" content="Atharv Anand" />
+     <meta property="og:site_name" content="Atharv Anand" />
+     <meta property="og:title" content="Atharv Anand" />
+     <meta
+       property="og:description"
+-      content="Apps, websites, AI tools, and hardware projects by Aahish Abbani."
++      content="Apps, websites, AI tools, and hardware projects by Atharv Anand."
+     />
+     <meta property="og:url" content="https://aahishabbani.me/" />
+     <meta property="og:type" content="website" />
+     <meta property="og:image" content="https://aahishabbani.me/black-hole.jpg" />
+     <meta property="og:image:width" content="1774" />
+     <meta property="og:image:height" content="887" />
+-    <meta property="og:image:alt" content="Aahish Abbani portfolio preview" />
++    <meta property="og:image:alt" content="Atharv Anand portfolio preview" />
+     <meta name="twitter:card" content="summary_large_image" />
+-    <meta name="twitter:title" content="Aahish Abbani" />
++    <meta name="twitter:title" content="Atharv Anand" />
+     <meta
+       name="twitter:description"
+-      content="Apps, websites, AI tools, and hardware projects by Aahish Abbani."
++      content="Apps, websites, AI tools, and hardware projects by Atharv Anand."
+     />
+     <meta name="twitter:image" content="https://aahishabbani.me/black-hole.jpg" />
+     <script type="application/ld+json">
+@@ -36,10 +36,10 @@
+           {
+             "@type": "Person",
+             "@id": "https://aahishabbani.me/#person",
+-            "name": "Aahish Abbani",
++            "name": "Atharv Anand",
+             "url": "https://aahishabbani.me/",
+             "image": "https://aahishabbani.me/black-hole.jpg",
+-            "description": "Aahish Abbani builds apps, websites, AI tools, and hardware projects.",
++            "description": "Atharv Anand builds apps, websites, AI tools, and hardware projects.",
+             "homeLocation": {
+               "@type": "Place",
+               "name": "Massachusetts, United States"
+@@ -54,18 +54,18 @@
+               "Hackathons"
+             ],
+             "sameAs": [
+-              "https://www.linkedin.com/in/aahish-abbani/",
+-              "https://github.com/kinghightech",
+-              "https://x.com/AahishAbbani",
+-              "https://www.instagram.com/aahishabbani/"
++              "https://www.linkedin.com/in/atharv-anand-318716336/",
++              "https://github.com/ANAND-debug-bit",
++              "https://x.com/ATHARV_ANAND_",
++              "https://www.instagram.com/v.a.j.r.a_07/"
+             ]
+           },
+           {
+             "@type": "WebSite",
+             "@id": "https://aahishabbani.me/#website",
+             "url": "https://aahishabbani.me/",
+-            "name": "Aahish Abbani",
+-            "description": "A portfolio for Aahish Abbani's apps, websites, AI tools, and hardware projects.",
++            "name": "Atharv Anand",
++            "description": "A portfolio for Atharv Anand's apps, websites, AI tools, and hardware projects.",
+             "publisher": {
+               "@id": "https://aahishabbani.me/#person"
+             }
+diff --git a/src/components/Contact.tsx b/src/components/Contact.tsx
+index cd74afc..3384a47 100644
+--- a/src/components/Contact.tsx
++++ b/src/components/Contact.tsx
+@@ -134,13 +134,13 @@ export default function Contact() {
+         </h2>
+ 
+         <a 
+-          href="mailto:aahish.abbani@icloud.com"
++          href="mailto:atharvanand37@gmail.com"
+           className="group relative inline-flex rounded-full text-base md:text-lg px-8 py-4 bg-surface text-text-primary transition-all duration-300 hover:scale-105"
+         >
+           <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+           <span className="absolute inset-[2px] bg-bg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+           <div className="relative z-10 flex items-center gap-2 font-medium">
+-            aahish.abbani@icloud.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
++            atharvanand37@gmail.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+           </div>
+         </a>
+ 
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 60af628..68cf2a2 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -3,14 +3,14 @@ export default function Footer() {
+     <footer className="relative z-10 w-full bg-bg py-8 border-t border-stroke/30">
+       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col-reverse md:flex-row items-center justify-between gap-6">
+         <div className="flex items-center gap-6">
+-          <a href="https://x.com/AahishAbbani" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">Twitter</a>
+-          <a href="https://www.linkedin.com/in/aahish-abbani/" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">LinkedIn</a>
+-          <a href="https://www.instagram.com/aahishabbani/" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">Instagram</a>
+-          <a href="https://github.com/kinghightech" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">GitHub</a>
++          <a href="https://x.com/ATHARV_ANAND_" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">Twitter</a>
++          <a href="https://www.linkedin.com/in/atharv-anand-318716336/" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">LinkedIn</a>
++          <a href="https://www.instagram.com/v.a.j.r.a_07/" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">Instagram</a>
++          <a href="https://github.com/ANAND-debug-bit" target="_blank" rel="noreferrer" className="text-sm text-muted hover:text-text-primary transition-colors">GitHub</a>
+         </div>
+ 
+         <div className="hidden md:block text-sm text-muted">
+-          © {new Date().getFullYear()} Aahish Abbani
++          © {new Date().getFullYear()} Atharv Anand
+         </div>
+       </div>
+     </footer>
+diff --git a/src/components/Hero.tsx b/src/components/Hero.tsx
+index c05d592..e905922 100644
+--- a/src/components/Hero.tsx
++++ b/src/components/Hero.tsx
+@@ -172,12 +172,12 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
+       revealName(tl, ">");
+ 
+       // 4. Once everything has landed, the 👋 gets sucked up into the black hole
+-      // at the very top-center. "Hey, I'm Aahish Abbani" stays put (for now).
++      // at the very top-center. "Hey, I'm Atharv Anand" stays put (for now).
+       if (hand && handCenter) {
+         addVortex(hand, handCenter, 0.65, "-=0.1");
+       }
+ 
+-      // 5. Then "Aahish" (first name only) gets sucked into the black hole the
++      // 5. Then "Atharv" (first name only) gets sucked into the black hole the
+       // same way... and a cursor rises up, grabs it back out, and drops it back
+       // into place. "Abbani" never moves.
+       if (firstName && nameCenter && cursor) {
+@@ -260,7 +260,7 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
+ 
+       </div>
+ 
+-      {/* Cursor used to fetch "Aahish" back out of the black hole. */}
++      {/* Cursor used to fetch "Atharv" back out of the black hole. */}
+       <div
+         ref={cursorRef}
+         className="absolute top-0 left-0 z-20 text-white opacity-0 pointer-events-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]"
+diff --git a/src/components/Seo.tsx b/src/components/Seo.tsx
+index 068d306..4373897 100644
+--- a/src/components/Seo.tsx
++++ b/src/components/Seo.tsx
+@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
+ import { projects } from '../data/projects';
+ 
+ const SITE_URL = 'https://aahishabbani.me';
+-const SITE_NAME = 'Aahish Abbani';
++const SITE_NAME = 'Atharv Anand';
+ const DEFAULT_IMAGE = `${SITE_URL}/black-hole.jpg`;
+-const DEFAULT_TITLE = 'Aahish Abbani';
++const DEFAULT_TITLE = 'Atharv Anand';
+ const DEFAULT_DESCRIPTION =
+-  'Aahish Abbani builds apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more.';
++  'Atharv Anand builds apps, websites, AI tools, and hardware projects. Explore projects like Om Daily, TapLock, and more.';
+ const DEFAULT_SOCIAL_DESCRIPTION =
+-  'Apps, websites, AI tools, and hardware projects by Aahish Abbani.';
++  'Apps, websites, AI tools, and hardware projects by Atharv Anand.';
+ 
+ type RouteMetadata = {
+   title: string;
+@@ -59,9 +59,9 @@ function routeMetadata(pathname: string): RouteMetadata {
+     const project = projects.find((item) => item.id === decodeURIComponent(projectMatch[1]));
+     if (project) {
+       return {
+-        title: `${project.name} | Aahish Abbani`,
++        title: `${project.name} | Atharv Anand`,
+         description: project.description,
+-        socialTitle: `${project.name} by Aahish Abbani`,
++        socialTitle: `${project.name} by Atharv Anand`,
+         path,
+         image: project.image ? absoluteUrl(project.image) : DEFAULT_IMAGE,
+       };
+@@ -73,39 +73,39 @@ function routeMetadata(pathname: string): RouteMetadata {
+       return {
+         title: DEFAULT_TITLE,
+         description: DEFAULT_DESCRIPTION,
+-        socialTitle: 'Aahish Abbani',
++        socialTitle: 'Atharv Anand',
+         socialDescription: DEFAULT_SOCIAL_DESCRIPTION,
+         path: '/',
+       };
+     case '/about':
+       return {
+-        title: 'About Aahish Abbani',
++        title: 'About Atharv Anand',
+         description:
+-          'Learn more about Aahish Abbani and the apps, websites, AI tools, and creative technology projects he builds.',
+-        socialTitle: 'About Aahish Abbani',
++          'Learn more about Atharv Anand and the apps, websites, AI tools, and creative technology projects he builds.',
++        socialTitle: 'About Atharv Anand',
+         path,
+       };
+     case '/projects':
+       return {
+-        title: 'Projects | Aahish Abbani',
++        title: 'Projects | Atharv Anand',
+         description:
+-          'Explore apps, websites, AI tools, and technical projects by Aahish Abbani, including Om Daily, TapLock, Khet, Medora, and more.',
+-        socialTitle: 'Projects by Aahish Abbani',
++          'Explore apps, websites, AI tools, and technical projects by Atharv Anand, including Om Daily, TapLock, Khet, Medora, and more.',
++        socialTitle: 'Projects by Atharv Anand',
+         path,
+       };
+     case '/contact':
+       return {
+-        title: 'Contact Aahish Abbani',
++        title: 'Contact Atharv Anand',
+         description:
+-          'Contact Aahish Abbani for projects, collaborations, app ideas, AI tools, and websites.',
+-        socialTitle: 'Contact Aahish Abbani',
++          'Contact Atharv Anand for projects, collaborations, app ideas, AI tools, and websites.',
++        socialTitle: 'Contact Atharv Anand',
+         path,
+       };
+     default:
+       return {
+         title: DEFAULT_TITLE,
+         description: DEFAULT_DESCRIPTION,
+-        socialTitle: 'Aahish Abbani',
++        socialTitle: 'Atharv Anand',
+         socialDescription: DEFAULT_SOCIAL_DESCRIPTION,
+         path,
+       };
+diff --git a/src/pages/About.tsx b/src/pages/About.tsx
+index ab827ca..5021943 100644
+--- a/src/pages/About.tsx
++++ b/src/pages/About.tsx
+@@ -5,7 +5,7 @@ import MagneticCard from '../components/MagneticCard';
+ import TravelSection from '../components/TravelSection';
+ 
+ const ABOUT_INTRO_TEXT =
+-  "Hey, I’m Atharv Anand, a sophomore at Shrewsbury High School. I currently work as an assistant tutor at Kumon Shrewsbury. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology. My favorite restaurant is Chipotle and my favorite fruit is mangos 🥭!";
++  "Hey, I’m Atharv Anand, a first-year B.Tech Computer Science student, previously at Tagore Senior Secondary School. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology.";
+ 
+ function AnimatedIntroCharacter({
+   char,
+@@ -273,7 +273,7 @@ const events: TimelineEventData[] = [
+     description: "I was born December 3rd, 2010, in Boston, Massachusetts.",
+     image: {
+       src: "/about/beginning.jpeg",
+-      alt: "Newborn photo of Aahish",
++      alt: "Newborn photo of Atharv",
+     },
+   },
+   {
+diff --git a/src/pages/Contact.tsx b/src/pages/Contact.tsx
+index 715733a..8f88cd6 100644
+--- a/src/pages/Contact.tsx
++++ b/src/pages/Contact.tsx
+@@ -3,10 +3,10 @@ import { FaInstagram, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+ import { ArrowUpRight } from 'lucide-react';
+ 
+ const socials = [
+-  { name: "Instagram", handle: "@aahishabbani", url: "https://www.instagram.com/aahishabbani/", icon: FaInstagram },
+-  { name: "X (Twitter)", handle: "@AahishAbbani", url: "https://x.com/AahishAbbani", icon: FaTwitter },
+-  { name: "LinkedIn", handle: "Aahish Abbani", url: "https://www.linkedin.com/in/aahish-abbani/", icon: FaLinkedin },
+-  { name: "GitHub", handle: "kinghightech", url: "https://github.com/kinghightech", icon: FaGithub }
++  { name: "Instagram", handle: "@v.a.j.r.a_07", url: "https://www.instagram.com/v.a.j.r.a_07/", icon: FaInstagram },
++  { name: "X (Twitter)", handle: "@ATHARV_ANAND_", url: "https://x.com/ATHARV_ANAND_", icon: FaTwitter },
++  { name: "LinkedIn", handle: "Atharv Anand", url: "https://www.linkedin.com/in/atharv-anand-318716336/", icon: FaLinkedin },
++  { name: "GitHub", handle: "ANAND-debug-bit", url: "https://github.com/ANAND-debug-bit", icon: FaGithub }
+ ];
+ 
+ export default function ContactPage() {
+@@ -51,13 +51,13 @@ export default function ContactPage() {
+ 
+           <div className="flex flex-col sm:flex-row items-center gap-4">
+             <a 
+-              href="mailto:aahish.abbani@icloud.com"
++              href="mailto:atharvanand37@gmail.com"
+               className="group relative inline-flex rounded-full text-lg md:text-xl px-8 py-4 bg-surface text-text-primary transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(78,133,191,0.3)]"
+             >
+               <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+               <span className="absolute inset-[2px] bg-bg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+               <div className="relative z-10 flex items-center gap-3 font-medium">
+-                aahish.abbani@icloud.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
++                atharvanand37@gmail.com <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+               </div>
+             </a>
+ 
