@@ -1,0 +1,20 @@
+diff --git a/src/pages/Contact.tsx b/src/pages/Contact.tsx
+index 2496f52..a1b2c3d 100644
+--- a/src/pages/Contact.tsx
++++ b/src/pages/Contact.tsx
+@@ -62,14 +62,14 @@ export default function ContactPage() {
+             </a>
+ 
+             <a 
+-              href="tel:+17747788352"
++              href="tel:+919911050073"
+               className="group relative inline-flex rounded-full text-lg md:text-xl px-8 py-4 bg-surface text-text-primary transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(78,133,191,0.3)]"
+             >
+               <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+               <span className="absolute inset-[2px] bg-bg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+               <div className="relative z-10 flex items-center gap-3 font-medium">
+-                +1 (774)-778-8352 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
++                +91 99110 50073 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+               </div>
+             </a>
+           </div>
