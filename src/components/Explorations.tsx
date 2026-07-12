@@ -8,13 +8,12 @@ const snapshotsFont =
   "'Rosindale Display Condensed', 'Rosindale Display', 'Instrument Serif', Georgia, serif";
 
 const explorations = [
-  { id: 1, image: "/playground/coastal-lookout.jpg", alt: "Looking out over clear coastal water from the rocks", rotation: -5, col: 1 },
-  { id: 2, image: "/playground/city-overlook.jpg", alt: "Watching city lights from a high overlook at dusk", rotation: 3, col: 2 },
-  { id: 3, image: "/playground/img-1719.jpg", alt: "Travel snapshot from along the way", rotation: 2, col: 1 },
-  { id: 4, image: "/playground/img-1897.jpg", alt: "Travel memory from along the way", rotation: -4, col: 2 },
-  { id: 5, image: "/playground/img-2008.jpg", alt: "Scenic snapshot from along the way", rotation: -2, col: 1 },
-  { id: 6, image: "/playground/img-6479.jpg", alt: "Portrait moment from along the way", rotation: 5, col: 2 },
-  { id: 7, image: "/playground/img-7177.jpg", alt: "Landscape moment from along the way", rotation: -3, col: 1 },
+  { id: 1, image: "/playground/hilltop-portrait.jpg", alt: "Standing on a rocky hilltop overlooking a forested valley", rotation: -5, col: 1 },
+  { id: 2, image: "/playground/with-parents.jpg", alt: "With family at a food court", rotation: 3, col: 2 },
+  { id: 3, image: "/playground/img-1719.jpg", alt: "Golden dancer statue against the sky", rotation: 2, col: 1 },
+  { id: 4, image: "/playground/group-programme-photo.jpg", alt: "Group photo in front of a colonial-era building", rotation: -4, col: 2 },
+  { id: 5, image: "/playground/friends-on-rocks.jpg", alt: "Sitting with friends on a rocky outcrop", rotation: -2, col: 1 },
+  { id: 6, image: "/playground/tree-lined-path.jpg", alt: "Walking down a tree-lined path with a group", rotation: 5, col: 2 },
 ];
 
 type Snapshot = (typeof explorations)[number];
