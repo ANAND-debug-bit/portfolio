@@ -22,10 +22,10 @@ type ProjectPreview = {
 
 // Five featured projects. Each image is pinned to a fixed spot ON the giant
 // wordmark (same moving group), so it never drifts relative to the text.
-const featuredOrder = ['om-daily', 'kastrals', 'medora', 'khet', 'haven'] as const;
+const featuredOrder = ['golden-ratio', 'hackathon-simulator', 'phys-lab', 'vedic-calc', 'poke-pull'] as const;
 
 const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
-  'om-daily': {
+  'golden-ratio': {
     size: 'w-[145px] min-[430px]:w-[160px] sm:w-[230px] md:w-[260px] lg:w-[290px] aspect-[3/4]',
     left: '15%',
     top: '40%',
@@ -34,7 +34,7 @@ const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
     imageFit: 'object-cover',
     layer: 'front',
   },
-  kastrals: {
+  'hackathon-simulator': {
     size: 'w-[220px] min-[430px]:w-[245px] sm:w-[410px] md:w-[480px] lg:w-[540px] aspect-[16/10]',
     left: '33%',
     top: '66%',
@@ -42,15 +42,7 @@ const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
     imageFit: 'object-cover',
     layer: 'front',
   },
-  medora: {
-    size: 'w-[145px] min-[430px]:w-[162px] sm:w-[235px] md:w-[265px] lg:w-[295px] aspect-[3/4]',
-    left: '51%',
-    top: '32%',
-    rotation: 'rotate-2',
-    imageFit: 'object-cover',
-    layer: 'front',
-  },
-  khet: {
+  'phys-lab': {
     size: 'w-[220px] min-[430px]:w-[245px] sm:w-[405px] md:w-[470px] lg:w-[520px] aspect-[16/10]',
     left: '69%',
     top: '62%',
@@ -58,7 +50,15 @@ const previewStyles: Record<string, Omit<ProjectPreview, 'project'>> = {
     imageFit: 'object-cover',
     layer: 'front',
   },
-  haven: {
+  'vedic-calc': {
+    size: 'w-[145px] min-[430px]:w-[162px] sm:w-[235px] md:w-[265px] lg:w-[295px] aspect-[3/4]',
+    left: '51%',
+    top: '32%',
+    rotation: 'rotate-2',
+    imageFit: 'object-cover',
+    layer: 'front',
+  },
+  'poke-pull': {
     size: 'w-[215px] min-[430px]:w-[240px] sm:w-[360px] md:w-[410px] lg:w-[450px] aspect-[4/3]',
     left: '88%',
     top: '42%',
