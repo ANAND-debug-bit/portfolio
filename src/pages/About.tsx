@@ -388,6 +388,46 @@ const marqueePhotos = [
     src: "/about/marquee/basketball.jpeg",
     alt: "Playing basketball",
   },
+  {
+    src: "/about/marquee/marquee-01.jpeg",
+    alt: "Campus event portrait",
+  },
+  {
+    src: "/about/marquee/marquee-02.png",
+    alt: "Train ride with friends",
+  },
+  {
+    src: "/about/marquee/marquee-03.png",
+    alt: "Observing through a telescope",
+  },
+  {
+    src: "/about/marquee/marquee-04.png",
+    alt: "Group event photo",
+  },
+  {
+    src: "/about/marquee/marquee-05.png",
+    alt: "Class trip group at dinner",
+  },
+  {
+    src: "/about/marquee/marquee-06.png",
+    alt: "Space exhibit with friends",
+  },
+  {
+    src: "/about/marquee/marquee-07.png",
+    alt: "Swimming pool team photo",
+  },
+  {
+    src: "/about/marquee/marquee-08.png",
+    alt: "Stage performance group picture",
+  },
+  {
+    src: "/about/marquee/marquee-09.png",
+    alt: "Group celebration photo",
+  },
+  {
+    src: "/about/marquee/marquee-10.png",
+    alt: "Friends posing after an event",
+  },
 ];
 
 function MemoryMarquee() {
