@@ -288,12 +288,13 @@ const events: TimelineEventData[] = [
     },
   },
   {
-    year: "2017",
-    title: "New Horizons",
-    description: "I moved to Shrewsbury, Massachusetts in January of 2017. I was so happy about getting my own room (I was too scared to sleep alone in it).",
+    year: "2018",
+    title: "Life Achievement",
+    description: "One of the best moments of my life — a milestone that accelerated my academics to the next level from the very beginning.",
     image: {
       src: "/about/new-horizons.jpeg",
-      alt: "Standing in front of the new house in Shrewsbury",
+      alt: "Life achievement milestone photo",
+      position: "center 25%",
     },
   },
   {
