@@ -5,7 +5,7 @@ import MagneticCard from '../components/MagneticCard';
 import TravelSection from '../components/TravelSection';
 
 const ABOUT_INTRO_TEXT =
-  "Hey, I’m Atharv Anand, a first-year B.Tech Computer Science student, previously at Tagore Senior Secondary School. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology.";
+  "Hey, I’m Atharv Anand, a first-year B.Tech student at Delhi Technological University, previously at Tagore Senior Secondary School. In my free time I enjoy listening to music, building coding projects like this one and learning more about technology.";
 
 function AnimatedIntroCharacter({
   char,
