@@ -268,9 +268,9 @@ function TimelineEvent({ event, index }: { event: TimelineEventData; index: numb
 
 const events: TimelineEventData[] = [
   {
-    year: "2010",
+    year: "2009",
     title: "The Beginning",
-    description: "I was born December 3rd, 2010, in Boston, Massachusetts.",
+    description: "I was born June 23rd, 2009, in New Delhi, India.",
     image: {
       src: "/about/beginning.jpeg",
       alt: "Newborn photo of Atharv",
