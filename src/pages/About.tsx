@@ -289,12 +289,13 @@ const events: TimelineEventData[] = [
   },
   {
     year: "2018",
-    title: "Life Achievement",
+    title: "Life Achievements",
     description: "One of the best moments of my life — a milestone that accelerated my academics to the next level from the very beginning.",
     image: {
-      src: "/about/new-horizons.jpeg",
-      alt: "Life achievement milestone photo",
+      src: "/about/life-achievement-2018.jpeg",
+      alt: "Life achievement moment in 2018",
       position: "center 25%",
+      aspect: "square",
     },
   },
   {
