@@ -277,14 +277,15 @@ const events: TimelineEventData[] = [
     },
   },
   {
-    year: "2010 - 2016",
-    title: "Early Years",
-    description: "Lived in Quincy, MA. Cars were my favorite toy!",
+    year: "2009 - 2016",
+    title: "Primary Years",
+    description: "Spent my early years studying primary education in Sagarpur, New Delhi, building the foundation of my learning and school life.",
     image: {
       src: "/about/early-years.jpeg",
-      alt: "Childhood photo from the early years in Quincy",
+      alt: "Primary school years in Sagarpur, New Delhi",
+      position: "center 30%",
+      aspect: "square",
     },
-    sideAccent: "car",
   },
   {
     year: "2017",
