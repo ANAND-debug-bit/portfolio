@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const snapshotsFont =
   "'Rosindale Display Condensed', 'Rosindale Display', 'Instrument Serif', Georgia, serif";
-
 const explorations = [
   { id: 1, image: "/playground/hilltop-portrait.jpg", alt: "Standing on a rocky hilltop overlooking a forested valley", rotation: -5, col: 1 },
   { id: 2, image: "/playground/with-parents.jpg", alt: "With family at a food court", rotation: 3, col: 2 },
@@ -15,8 +14,9 @@ const explorations = [
   { id: 5, image: "/playground/friends-on-rocks.jpg", alt: "Sitting with friends on a rocky outcrop", rotation: -2, col: 1 },
   { id: 6, image: "/playground/tree-lined-path.jpg", alt: "Walking down a tree-lined path with a group", rotation: 5, col: 2 },
   { id: 7, image: "/playground/science-exhibit.jpg", alt: "Group visit to a science exhibit", rotation: -3, col: 1 },
+  { id: 8, image: "/about/marquee/d13.jpg", alt: "Snapshot from a recent outing", rotation: 4, col: 2 },
+  { id: 9, image: "/about/marquee/d14.png", alt: "Another moment from the journey", rotation: -1, col: 1 },
 ];
-
 type Snapshot = (typeof explorations)[number];
 
 function SnapshotCard({
