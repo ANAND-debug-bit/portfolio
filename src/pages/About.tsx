@@ -408,6 +408,10 @@ const marqueePhotos = [
     src: "/about/marquee/marquee-10.png",
     alt: "Friends posing after an event",
   },
+  {
+    src: "/about/marquee/d1.jpg",
+    alt: "New marquee photo",
+  },
 ];
 
 function MemoryMarquee() {
