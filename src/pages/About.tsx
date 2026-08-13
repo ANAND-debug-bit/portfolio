@@ -345,7 +345,8 @@ description: "Built and deployed PhysLab, an interactive physics simulation site
     image: {
       src: "/about/marquee/phys.png",
       alt: "PhysLab site icon",
-      aspect: "square",
+      aspect: "wide",
+      fit: "cover",
     },
   },
   {
