@@ -318,13 +318,13 @@ const events: TimelineEventData[] = [
     },
   },
   {
-    year: "Spring 2026",
-    title: "First Hackathon",
-    description: "Got a lot more into coding and won my first hackathon in March of 2026.",
-    image: {
-      src: "/about/hackathon-2026.jpeg",
-      alt: "Presenting a project during a hackathon in March 2026",
-    },
+  year: "2024",
+  title: "Selected for ISRO Yuvika",
+  description: "Got selected for ISRO Yuvika, India's largest residential program at one of the Space Centers of India, among lakhs of applicants across the country.",
+  image: {
+    src: "/about/marquee/isro.png",
+    alt: "Selected for ISRO Yuvika student residential program",
+  },
   },
   {
     year: "June 2025",
