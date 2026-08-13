@@ -339,18 +339,18 @@ const events: TimelineEventData[] = [
     },
   },
   {
-    year: "June 2026",
-    title: "Published My First App",
-    description: "Published Om Daily, an app that teaches Hinduism, on the App Store.",
+    year: "July 2026",
+    title: "Published My First Site",
+description: "Built and deployed PhysLab, an interactive physics simulation site to help visualize and understand core physics concepts and experiments.",
     image: {
-      src: "/about/dharma-daily-icon.png",
-      alt: "Om Daily app icon",
+      src: "/about/marquee/phys.png",
+      alt: "PhysLab site icon",
       aspect: "square",
     },
   },
   {
     year: "Aug 2026",
-    title: "Started DTU",
+    title: "New Chapter",
     description: "Got into Delhi Technological University — starting my journey of engineering.",
     image: {
       src: "/about/marquee/delhi.jpg",
@@ -361,7 +361,7 @@ const events: TimelineEventData[] = [
   },
   {
     year: "Current",
-    title: "Building Projects",
+    title: "Building Projects , working on AI skills , relations and making memories", 
     description: "I enjoy building projects, experimenting with new ideas, and learning more about AI.",
   }
 ];
