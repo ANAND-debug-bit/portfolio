@@ -412,6 +412,50 @@ const marqueePhotos = [
     src: "/about/marquee/d1.jpg",
     alt: "New marquee photo",
   },
+  {
+    src: "/about/marquee/d2.jpg",
+    alt: "Marquee photo d2",
+  },
+  {
+    src: "/about/marquee/d3.jpg",
+    alt: "Marquee photo d3",
+  },
+  {
+    src: "/about/marquee/d4.jpg",
+    alt: "Marquee photo d4",
+  },
+  {
+    src: "/about/marquee/d5.jpg",
+    alt: "Marquee photo d5",
+  },
+  {
+    src: "/about/marquee/d6.jpg",
+    alt: "Marquee photo d6",
+  },
+  {
+    src: "/about/marquee/d7.jpg",
+    alt: "Marquee photo d7",
+  },
+  {
+    src: "/about/marquee/d8.jpg",
+    alt: "Marquee photo d8",
+  },
+  {
+    src: "/about/marquee/d9.jpg",
+    alt: "Marquee photo d9",
+  },
+  {
+    src: "/about/marquee/d10.jpg",
+    alt: "Marquee photo d10",
+  },
+  {
+    src: "/about/marquee/d11.jpg",
+    alt: "Marquee photo d11",
+  },
+  {
+    src: "/about/marquee/d12.jpg",
+    alt: "Marquee photo d12",
+  },
 ];
 
 function MemoryMarquee() {
