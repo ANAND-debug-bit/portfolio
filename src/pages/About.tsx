@@ -327,7 +327,7 @@ const events: TimelineEventData[] = [
   },
   },
   {
-    year: "June 2025",
+    year: "May 2024",
     title: "My Family and I",
     description: "My family and I at my Orientation day at ISRO space center in Dehradun, Uttarakhand, India.",
     image: {
