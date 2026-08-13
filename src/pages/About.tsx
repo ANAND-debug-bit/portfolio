@@ -272,7 +272,7 @@ const events: TimelineEventData[] = [
     title: "The Beginning",
     description: "I was born June 23rd, 2009, in New Delhi, India.",
     image: {
-      src: "/about/beginning.jpeg",
+      src: "/about/marquee/birth.jpg",
       alt: "Newborn photo of Atharv",
     },
   },
@@ -353,7 +353,7 @@ const events: TimelineEventData[] = [
     title: "Started DTU",
     description: "Got into Delhi Technological University — starting my journey of engineering.",
     image: {
-      src: "/about/dharma-daily-icon.png",
+      src: "/about/marquee/delhi.jpg",
       alt: "DTU campus photo",
       aspect: "wide",
       fit: "cover",
