@@ -349,6 +349,17 @@ const events: TimelineEventData[] = [
     },
   },
   {
+    year: "Aug 2026",
+    title: "Started DTU",
+    description: "Got into Delhi Technological University — starting my journey of engineering.",
+    image: {
+      src: "/about/dharma-daily-icon.png",
+      alt: "DTU campus photo",
+      aspect: "wide",
+      fit: "cover",
+    },
+  },
+  {
     year: "Current",
     title: "Building Projects",
     description: "I enjoy building projects, experimenting with new ideas, and learning more about AI.",
@@ -356,38 +367,6 @@ const events: TimelineEventData[] = [
 ];
 
 const marqueePhotos = [
-  {
-    src: "/about/marquee/newborn-bear.jpeg",
-    alt: "Baby photo in a yellow bear outfit",
-  },
-  {
-    src: "/about/marquee/angry-birds-watch.jpeg",
-    alt: "Childhood photo showing a light-up watch",
-  },
-  {
-    src: "/about/marquee/party-mask.jpeg",
-    alt: "Childhood party photo with a mask",
-  },
-  {
-    src: "/about/marquee/sunglasses.jpeg",
-    alt: "Childhood photo wearing blue sunglasses",
-  },
-  {
-    src: "/about/marquee/bed-video.jpeg",
-    alt: "Still from a childhood video",
-  },
-  {
-    src: "/about/marquee/taco-night.jpeg",
-    alt: "Eating tacos with a friend",
-  },
-  {
-    src: "/about/marquee/costume-nyra.jpeg",
-    alt: "Costume photo with Nyra",
-  },
-  {
-    src: "/about/marquee/basketball.jpeg",
-    alt: "Playing basketball",
-  },
   {
     src: "/about/marquee/marquee-01.jpeg",
     alt: "Campus event portrait",
