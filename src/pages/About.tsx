@@ -448,6 +448,18 @@ const marqueePhotos = [
     src: "/about/marquee/d12.JPG",
     alt: "Marquee photo d12",
   },
+  {
+    src: "/about/marquee/d13.jpg",
+    alt: "Marquee photo d13",
+  },
+  {
+    src: "/about/marquee/d14.png",
+    alt: "Marquee photo d14",
+  },
+  {
+    src: "/about/marquee/d15.png",
+    alt: "Marquee photo d15",
+  },
 ];
 
 function MemoryMarquee() {
