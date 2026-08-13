@@ -318,6 +318,15 @@ const events: TimelineEventData[] = [
     },
   },
   {
+    year: "Spring 2026",
+    title: "First Hackathon",
+    description: "Got a lot more into coding and won my first hackathon in March of 2026.",
+    image: {
+      src: "/about/hackathon-2026.jpeg",
+      alt: "Presenting a project during a hackathon in March 2026",
+    },
+  },
+  {
     year: "June 2025",
     title: "My Family and I",
     description: "My family and I at my Orientation day at ISRO space center in Dehradun, Uttarakhand, India.",
@@ -329,15 +338,7 @@ const events: TimelineEventData[] = [
       },
     },
   },
-  {
-    year: "Spring 2026",
-    title: "First Hackathon",
-    description: "Got a lot more into coding and won my first hackathon in March of 2026.",
-    image: {
-      src: "/about/hackathon-2026.jpeg",
-      alt: "Presenting a project during a hackathon in March 2026",
-    },
-  },
+  
   {
     year: "July 2026",
     title: "Published My First Site",
