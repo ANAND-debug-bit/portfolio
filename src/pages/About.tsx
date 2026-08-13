@@ -319,13 +319,13 @@ const events: TimelineEventData[] = [
   },
   {
     year: "June 2025",
-    title: "Graduated Middle School",
-    description: "Graduated Oak Middle School.",
+    title: "My Family and I",
+    description: "My family and I at my Orientation day at ISRO space center in Dehradun, Uttarakhand, India.",
     image: {
-      src: "/about/middle-school-graduation.jpeg",
-      alt: "Middle school graduation in June 2025",
+      src: "/about/marquee/family.png",
+      alt: "Family photo at ISRO orientation day",
       callout: {
-        text: "That's my mom!",
+        text: "That's my family!",
       },
     },
   },
@@ -363,7 +363,7 @@ description: "Built and deployed PhysLab, an interactive physics simulation site
   {
     year: "Current",
     title: "Building Projects , working on AI skills , relations and making memories", 
-    description: "I enjoy building projects, experimenting with new ideas, and learning more about AI.",
+    description: "I enjoy building projects, experimenting with new ideas, learning more about AI and talking to new people.",
   }
 ];
 
