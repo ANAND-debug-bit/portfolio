@@ -413,47 +413,47 @@ const marqueePhotos = [
     alt: "New marquee photo",
   },
   {
-    src: "/about/marquee/d2.jpg",
+    src: "/about/marquee/d2.png",
     alt: "Marquee photo d2",
   },
   {
-    src: "/about/marquee/d3.jpg",
+    src: "/about/marquee/d3.png",
     alt: "Marquee photo d3",
   },
   {
-    src: "/about/marquee/d4.jpg",
+    src: "/about/marquee/d4.png",
     alt: "Marquee photo d4",
   },
   {
-    src: "/about/marquee/d5.jpg",
+    src: "/about/marquee/d5.png",
     alt: "Marquee photo d5",
   },
   {
-    src: "/about/marquee/d6.jpg",
+    src: "/about/marquee/d6.png",
     alt: "Marquee photo d6",
   },
   {
-    src: "/about/marquee/d7.jpg",
+    src: "/about/marquee/d7.JPG",
     alt: "Marquee photo d7",
   },
   {
-    src: "/about/marquee/d8.jpg",
+    src: "/about/marquee/d8.JPG",
     alt: "Marquee photo d8",
   },
   {
-    src: "/about/marquee/d9.jpg",
+    src: "/about/marquee/d9.png",
     alt: "Marquee photo d9",
   },
   {
-    src: "/about/marquee/d10.jpg",
+    src: "/about/marquee/d10.JPG",
     alt: "Marquee photo d10",
   },
   {
-    src: "/about/marquee/d11.jpg",
+    src: "/about/marquee/d11.JPG",
     alt: "Marquee photo d11",
   },
   {
-    src: "/about/marquee/d12.jpg",
+    src: "/about/marquee/d12.JPG",
     alt: "Marquee photo d12",
   },
 ];
