@@ -298,22 +298,13 @@ const events: TimelineEventData[] = [
       aspect: "square",
     },
   },
+
   {
-    year: "September 2021",
-    title: "5th Grade During COVID",
-    description: "Started 5th grade during COVID. I also made my first attempt at becoming a famous YouTuber. Didn't go viral, but I learned how to edit videos and photos.",
+    year: "2024",
+    title: "Got Into Coding , electronics and robotics",
+    description: "Got into the world of engineering with basic Python, built a Iot project named 'IOT infused Urban Farming Ecosystem' with Arduino , ESP32 and sensors . also won our first Science exhibition followed by a series of victories and challenges.",
     image: {
-      src: "/about/covid-fifth-grade.jpeg",
-      alt: "First day of fifth grade during COVID",
-      position: "center 18%",
-    },
-  },
-  {
-    year: "2023",
-    title: "Got Into Coding",
-    description: "Got into coding with basic Python, built my first math quiz game, and programmed a Sphero robot ball with blocks.",
-    image: {
-      src: "/about/sphero-coding.jpeg",
+      src: "/about/marquee/IOT.png",
       alt: "Sphero robot ball used while learning block programming",
     },
   },
