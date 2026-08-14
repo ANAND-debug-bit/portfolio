@@ -57,9 +57,9 @@ const trips = [
     place: "Jabalpur (MP)",
     note: "Marble rocks, river gorges, and quiet nature.",
     images: [
-      { src: "/travel/jabalpur/ja1.png", alt: "Marble rocks along the river in Jabalpur" },
-      { src: "/travel/jabalpur/ja2.png", alt: "Dhuandhar waterfall in Jabalpur" },
-      { src: "/travel/jabalpur/ja3.png", alt: "Boat ride through the gorge in Jabalpur" },
+      { src: "/travel/Jabalpur/ja1.png", alt: "Marble rocks along the river in Jabalpur" },
+      { src: "/travel/Jabalpur/ja2.png", alt: "Dhuandhar waterfall in Jabalpur" },
+      { src: "/travel/Jabalpur/ja3.png", alt: "Boat ride through the gorge in Jabalpur" },
     ],
   },
   {
