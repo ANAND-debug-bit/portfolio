@@ -4,79 +4,72 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const trips = [
   {
     num: "01",
-    place: "Greece",
-    date: "April 2026",
-    note: "Island air, ancient streets, and blue water days.",
+    place: "Ayodhya",
+    note: "Sacred temples, riverside ghats, and quiet devotion.",
     images: [
-      { src: "/travel/greece/santorini-caldera.jpg", alt: "White Santorini buildings above the sea" },
-      { src: "/travel/greece/meteora-cliffs.jpg", alt: "Meteora cliffs and monastery in Greece" },
-      { src: "/travel/greece/oia-hillside.jpg", alt: "Oia hillside with white buildings and windmills" },
+      { src: "/travel/ayodhya/ay1.jpg", alt: "Ram Mandir temple in Ayodhya" },
+      { src: "/travel/ayodhya/ay2.jpg", alt: "Saryu river ghats in Ayodhya" },
+      { src: "/travel/ayodhya/ay3.jpg", alt: "Temple street scene in Ayodhya" },
     ],
   },
   {
     num: "02",
-    place: "Cruise",
-    date: "February 2026",
-    note: "Open ocean, sunsets, and a floating reset.",
+    place: "Dehradun",
+    note: "Hill air, valley views, and a slower pace.",
     images: [
-      { src: "/travel/cruise/ship-port.jpg", alt: "Cruise ship docked at port" },
-      { src: "/travel/cruise/island-harbor.jpg", alt: "Turquoise island harbor from above" },
-      { src: "/travel/cruise/cruise-drinks.jpg", alt: "Two drinks at a cruise bar" },
+      { src: "/travel/dehradun/de1.jpg", alt: "Valley view near Dehradun" },
+      { src: "/travel/dehradun/de2.jpg", alt: "Forest road in Dehradun" },
+      { src: "/travel/dehradun/de3.jpg", alt: "Hillside town view in Dehradun" },
     ],
   },
   {
     num: "03",
-    place: "Florida",
-    date: "December 2025",
-    note: "Warm winter light and time away from the usual rhythm.",
+    place: "Rajasthan",
+    note: "Forts, desert light, and centuries of color.",
     images: [
-      { src: "/travel/florida-2025/foggy-beach.jpg", alt: "Foggy Florida beach with waves rolling in" },
-      { src: "/travel/florida-2025/ocean-sunset.jpg", alt: "Orange sunset over the ocean in Florida" },
-      { src: "/travel/florida-2025/coastal-road.jpg", alt: "Coastal Florida road under a bright sky" },
+      { src: "/travel/rajasthan/ra1.jpg", alt: "Fort overlooking Rajasthan" },
+      { src: "/travel/rajasthan/ra2.jpg", alt: "Desert dunes in Rajasthan" },
+      { src: "/travel/rajasthan/ra3.jpg", alt: "Palace courtyard in Rajasthan" },
     ],
   },
   {
     num: "04",
-    place: "Cancun",
-    date: "April 2025",
-    note: "Clear water, bright days, and a proper spring escape.",
+    place: "Jammu and Kashmir",
+    note: "Snow peaks, still lakes, and mountain calm.",
     images: [
-      { src: "/travel/cancun/palm-drive.jpg", alt: "Palm trees along a resort drive in Cancun" },
-      { src: "/travel/cancun/night-pool.jpg", alt: "Resort pool glowing at night in Cancun" },
-      { src: "/travel/cancun/dinner-table.jpg", alt: "Dinner table with dishes and drinks in Cancun" },
+      { src: "/travel/jammu-kashmir/jk1.jpg", alt: "Snow-capped mountains in Jammu and Kashmir" },
+      { src: "/travel/jammu-kashmir/jk2.jpg", alt: "Shikara boat on a lake in Kashmir" },
+      { src: "/travel/jammu-kashmir/jk3.jpg", alt: "Valley meadow in Jammu and Kashmir" },
     ],
   },
   {
     num: "05",
-    place: "Florida",
-    date: "December 2024",
-    note: "A familiar place with a fresh end-of-year feeling.",
+    place: "Agra",
+    note: "Marble domes, morning mist, and timeless history.",
     images: [
-      { src: "/travel/florida-2024/aquarium-show.jpg", alt: "Aquarium show in Florida" },
-      { src: "/travel/florida-2024/neon-reef.jpg", alt: "Colorful neon reef scene in Florida" },
-      { src: "/travel/florida-2024/everglades-trail.jpg", alt: "Everglades trail by the water in Florida" },
+      { src: "/travel/agra/ag1.jpg", alt: "Taj Mahal at sunrise in Agra" },
+      { src: "/travel/agra/ag2.jpg", alt: "Agra Fort exterior" },
+      { src: "/travel/agra/ag3.jpg", alt: "Marble details at a monument in Agra" },
     ],
   },
   {
     num: "06",
-    place: "India",
-    date: "Summer 2024",
-    note: "Family, culture, heat, color, and memories that stick.",
+    place: "Jabalpur (MP)",
+    note: "Marble rocks, river gorges, and quiet nature.",
     images: [
-      { src: "/travel/india/hill-view.jpg", alt: "Green hills and cloudy sky in India" },
-      { src: "/travel/india/street-food.jpg", alt: "Street food being served in India" },
-      { src: "/travel/india/temple-street.jpg", alt: "Temple street scene in India" },
+      { src: "/travel/jabalpur/ja1.jpg", alt: "Marble rocks along the river in Jabalpur" },
+      { src: "/travel/jabalpur/ja2.jpg", alt: "Dhuandhar waterfall in Jabalpur" },
+      { src: "/travel/jabalpur/ja3.jpg", alt: "Boat ride through the gorge in Jabalpur" },
     ],
   },
   {
     num: "07",
-    place: "New York",
-    date: "December 2023",
-    note: "Winter city energy, lights, walking, and loud streets.",
+    place: "Bihar",
+    note: "Ancient ruins, riverside towns, and deep roots.",
     images: [
-      { src: "/travel/new-york/stock-exchange-studio.jpg", alt: "Stock exchange studio in New York" },
-      { src: "/travel/new-york/temple-exterior.jpg", alt: "Temple exterior visited during the New York trip" },
-      { src: "/travel/new-york/times-square-night.jpg", alt: "Times Square at night in New York" },
+      { src: "/travel/bihar/bi1.jpg", alt: "Ancient ruins in Bihar" },
+      { src: "/travel/bihar/bi2.jpg", alt: "Riverside town scene in Bihar" },
+      { src: "/travel/bihar/bi3.jpg", alt: "Temple complex in Bihar" },
     ],
   },
 ];
@@ -100,7 +93,7 @@ export default function TravelSection() {
       <div className="mx-auto flex w-full max-w-[1100px] flex-col pb-[12vh]">
         {trips.map((trip, index) => (
           <TravelCard
-            key={`${trip.place}-${trip.date}`}
+            key={`${trip.place}-${trip.num}`}
             trip={trip}
             index={index}
             totalCards={trips.length}
@@ -151,9 +144,6 @@ const TravelCard = ({
           </span>
 
           <div>
-            <p className="mb-4 font-body text-sm font-medium uppercase tracking-[0.35em] text-[#89AACC] md:text-base">
-              {trip.date}
-            </p>
             <h3 className="font-display text-6xl italic leading-none tracking-tight text-text-primary md:text-8xl lg:text-9xl">
               {trip.place}
             </h3>

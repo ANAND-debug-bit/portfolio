@@ -302,7 +302,7 @@ const events: TimelineEventData[] = [
   {
     year: "2024",
     title: "Got Into Coding , electronics and robotics",
-    description: "Got into the world of engineering with basic Python, built a Iot project named 'IOT infused Urban Farming Ecosystem' with Arduino , ESP32 and sensors . also won our first Science exhibition followed by a series of victories and challenges.",
+    description: "Got into the world of engineering with basic Python, built a IOT project named 'IOT infused Urban Farming Ecosystem' with Arduino , ESP32 and sensors . also won our first Science exhibition followed by a series of victories and challenges.",
     image: {
       src: "/about/marquee/IOT.png",
       alt: "Sphero robot ball used while learning block programming",
