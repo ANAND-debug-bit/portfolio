@@ -292,7 +292,7 @@ const events: TimelineEventData[] = [
     title: "Life Achievements",
     description: "One of the best moments of my life — a milestone that accelerated my academics to the next level from the very beginning.",
     image: {
-      src: "/about/life-achievement-2018.png",
+      src: "/about/life-achievement-2018.jpg",
       alt: "Life achievement moment in 2018",
       position: "center 25%",
       aspect: "square",
@@ -304,7 +304,7 @@ const events: TimelineEventData[] = [
     title: "Got Into Coding , electronics and robotics",
     description: "Got into the world of engineering with basic Python, built a IOT project named 'IOT infused Urban Farming Ecosystem' with Arduino , ESP32 and sensors . also won our first Science exhibition followed by a series of victories and challenges.",
     image: {
-      src: "/about/marquee/IOT.png",
+      src: "/about/marquee/IOT.jpg",
       alt: "Sphero robot ball used while learning block programming",
     },
   },
@@ -312,8 +312,8 @@ const events: TimelineEventData[] = [
   year: "2024",
   title: "Selected for ISRO Yuvika",
   description: "Got selected for ISRO Yuvika, India's largest residential program at one of the Space Centers of India, among lakhs of applicants across the country.",
-  image: {
-    src: "/about/marquee/isro.png",
+    image: {
+      src: "/about/marquee/isro.jpg",
     alt: "Selected for ISRO Yuvika student residential program",
   },
   },
@@ -321,8 +321,8 @@ const events: TimelineEventData[] = [
     year: "May 2024",
     title: "My Family and I",
     description: "My family and I at my Orientation day at ISRO space center in Dehradun, Uttarakhand, India.",
-    image: {
-      src: "/about/marquee/family.png",
+      image: {
+      src: "/about/marquee/family.jpg",
       alt: "Family photo at ISRO orientation day",
       callout: {
         text: "That's my family!",
@@ -335,7 +335,7 @@ const events: TimelineEventData[] = [
     title: "Published My First Site",
 description: "Built and deployed PhysLab, an interactive physics simulation site to help visualize and understand core physics concepts and experiments.",
     image: {
-      src: "/about/marquee/phys.png",
+      src: "/about/marquee/phys.jpg",
       alt: "PhysLab site icon",
       aspect: "wide",
       fit: "contain",
@@ -365,39 +365,39 @@ const marqueePhotos = [
     alt: "Campus event portrait",
   },
   {
-    src: "/about/marquee/marquee-02.png",
+    src: "/about/marquee/marquee-02.jpg",
     alt: "Train ride with friends",
   },
   {
-    src: "/about/marquee/marquee-03.png",
+    src: "/about/marquee/marquee-03.jpg",
     alt: "Observing through a telescope",
   },
   {
-    src: "/about/marquee/marquee-04.png",
+    src: "/about/marquee/marquee-04.jpg",
     alt: "Group event photo",
   },
   {
-    src: "/about/marquee/marquee-05.png",
+    src: "/about/marquee/marquee-05.jpg",
     alt: "Class trip group at dinner",
   },
   {
-    src: "/about/marquee/marquee-06.png",
+    src: "/about/marquee/marquee-06.jpg",
     alt: "Space exhibit with friends",
   },
   {
-    src: "/about/marquee/marquee-07.png",
+    src: "/about/marquee/marquee-07.jpg",
     alt: "Swimming pool team photo",
   },
   {
-    src: "/about/marquee/marquee-08.png",
+    src: "/about/marquee/marquee-08.jpg",
     alt: "Stage performance group picture",
   },
   {
-    src: "/about/marquee/marquee-09.png",
+    src: "/about/marquee/marquee-09.jpg",
     alt: "Group celebration photo",
   },
   {
-    src: "/about/marquee/marquee-10.png",
+    src: "/about/marquee/marquee-10.jpg",
     alt: "Friends posing after an event",
   },
   {
@@ -405,23 +405,23 @@ const marqueePhotos = [
     alt: "New marquee photo",
   },
   {
-    src: "/about/marquee/d2.png",
+    src: "/about/marquee/d2.jpg",
     alt: "Marquee photo d2",
   },
   {
-    src: "/about/marquee/d3.png",
+    src: "/about/marquee/d3.jpg",
     alt: "Marquee photo d3",
   },
   {
-    src: "/about/marquee/d4.png",
+    src: "/about/marquee/d4.jpg",
     alt: "Marquee photo d4",
   },
   {
-    src: "/about/marquee/d5.png",
+    src: "/about/marquee/d5.jpg",
     alt: "Marquee photo d5",
   },
   {
-    src: "/about/marquee/d6.png",
+    src: "/about/marquee/d6.jpg",
     alt: "Marquee photo d6",
   },
   {
@@ -433,7 +433,7 @@ const marqueePhotos = [
     alt: "Marquee photo d8",
   },
   {
-    src: "/about/marquee/d9.png",
+    src: "/about/marquee/d9.jpg",
     alt: "Marquee photo d9",
   },
   {
@@ -453,11 +453,11 @@ const marqueePhotos = [
     alt: "Marquee photo d13",
   },
   {
-    src: "/about/marquee/d14.png",
+    src: "/about/marquee/d14.jpg",
     alt: "Marquee photo d14",
   },
   {
-    src: "/about/marquee/d15.png",
+    src: "/about/marquee/d15.jpg",
     alt: "Marquee photo d15",
   },
 ];

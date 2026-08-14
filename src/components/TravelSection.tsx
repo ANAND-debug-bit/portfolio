@@ -17,9 +17,9 @@ const trips = [
     place: "Dehradun",
     note: "Hill air, valley views, and a slower pace...",
     images: [
-      { src: "/travel/ayodhya/de1.jpg", alt: "Valley view near Dehradun" },
-      { src: "/travel/ayodhya/de2.jpg", alt: "Forest road in Dehradun" },
-      { src: "/travel/ayodhya/de3.jpg", alt: "Hillside town view in Dehradun" },
+      { src: "/travel/dehradun/de1.jpg", alt: "Valley view near Dehradun" },
+      { src: "/travel/dehradun/de2.jpg", alt: "Forest road in Dehradun" },
+      { src: "/travel/dehradun/de3.jpg", alt: "Hillside town view in Dehradun" },
     ],
   },
   {

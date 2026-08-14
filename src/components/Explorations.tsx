@@ -15,7 +15,7 @@ const explorations = [
   { id: 6, image: "/playground/tree-lined-path.jpg", alt: "Walking down a tree-lined path with a group", rotation: 5, col: 2 },
   { id: 7, image: "/playground/science-exhibit.jpg", alt: "Group visit to a science exhibit", rotation: -3, col: 1 },
   { id: 8, image: "/about/marquee/d13.jpg", alt: "Snapshot from a recent outing", rotation: 4, col: 2 },
-  { id: 9, image: "/about/marquee/d14.png", alt: "Another moment from the journey", rotation: -1, col: 1 },
+  { id: 9, image: "/about/marquee/d14.jpg", alt: "Another moment from the journey", rotation: -1, col: 1 },
 ];
 type Snapshot = (typeof explorations)[number];
 
