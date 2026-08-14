@@ -7,9 +7,9 @@ const trips = [
     place: "Ayodhya",
     note: "Sacred temples, riverside ghats, and quiet devotion.",
     images: [
-      { src: "/travel/ayodhya/ay1.png", alt: "Ram Mandir temple in Ayodhya" },
-      { src: "/travel/ayodhya/ay2.png", alt: "Saryu river ghats in Ayodhya" },
-      { src: "/travel/ayodhya/ay3.png", alt: "Temple street scene in Ayodhya" },
+      { src: "/travel/ayodhya/ay1.jpg", alt: "Ram Mandir temple in Ayodhya" },
+      { src: "/travel/ayodhya/ay2.jpg", alt: "Saryu river ghats in Ayodhya" },
+      { src: "/travel/ayodhya/ay3.jpg", alt: "Temple street scene in Ayodhya" },
     ],
   },
   {
@@ -17,9 +17,9 @@ const trips = [
     place: "Dehradun",
     note: "Hill air, valley views, and a slower pace...",
     images: [
-      { src: "/travel/ayodhya/de1.png", alt: "Valley view near Dehradun" },
-      { src: "/travel/ayodhya/de2.png", alt: "Forest road in Dehradun" },
-      { src: "/travel/ayodhya/de3.png", alt: "Hillside town view in Dehradun" },
+      { src: "/travel/ayodhya/de1.jpg", alt: "Valley view near Dehradun" },
+      { src: "/travel/ayodhya/de2.jpg", alt: "Forest road in Dehradun" },
+      { src: "/travel/ayodhya/de3.jpg", alt: "Hillside town view in Dehradun" },
     ],
   },
   {
@@ -27,9 +27,9 @@ const trips = [
     place: "Rajasthan",
     note: "Forts, desert light, and centuries of color.",
     images: [
-      { src: "/travel/rajasthan/ra1.png", alt: "Fort overlooking Rajasthan" },
-      { src: "/travel/rajasthan/ra2.png", alt: "Desert dunes in Rajasthan" },
-      { src: "/travel/rajasthan/ra3.png", alt: "Palace courtyard in Rajasthan" },
+      { src: "/travel/rajasthan/ra1.jpg", alt: "Fort overlooking Rajasthan" },
+      { src: "/travel/rajasthan/ra2.jpg", alt: "Desert dunes in Rajasthan" },
+      { src: "/travel/rajasthan/ra3.jpg", alt: "Palace courtyard in Rajasthan" },
     ],
   },
   {
@@ -37,9 +37,9 @@ const trips = [
     place: "Jammu and Kashmir",
     note: "Snow peaks, still lakes, and mountain calm.",
     images: [
-      { src: "/travel/jammu-kashmir/jk1.png", alt: "Snow-capped mountains in Jammu and Kashmir" },
-      { src: "/travel/jammu-kashmir/jk2.png", alt: "Shikara boat on a lake in Kashmir" },
-      { src: "/travel/jammu-kashmir/jk3.png", alt: "Valley meadow in Jammu and Kashmir" },
+      { src: "/travel/jammu-kashmir/jk1.jpg", alt: "Snow-capped mountains in Jammu and Kashmir" },
+      { src: "/travel/jammu-kashmir/jk2.jpg", alt: "Shikara boat on a lake in Kashmir" },
+      { src: "/travel/jammu-kashmir/jk3.jpg", alt: "Valley meadow in Jammu and Kashmir" },
     ],
   },
   {
@@ -47,9 +47,9 @@ const trips = [
     place: "Agra",
     note: "Marble domes, morning mist, and timeless history.",
     images: [
-      { src: "/travel/agra/ag1.png", alt: "Taj Mahal at sunrise in Agra" },
-      { src: "/travel/agra/ag2.png", alt: "Agra Fort exterior" },
-      { src: "/travel/agra/ag3.png", alt: "Marble details at a monument in Agra" },
+      { src: "/travel/agra/ag1.jpg", alt: "Taj Mahal at sunrise in Agra" },
+      { src: "/travel/agra/ag2.jpg", alt: "Agra Fort exterior" },
+      { src: "/travel/agra/ag3.jpg", alt: "Marble details at a monument in Agra" },
     ],
   },
   {
@@ -57,9 +57,9 @@ const trips = [
     place: "Jabalpur (MP)",
     note: "Marble rocks, river gorges, and quiet nature.",
     images: [
-      { src: "/travel/Jabalpur/ja1.png", alt: "Marble rocks along the river in Jabalpur" },
-      { src: "/travel/Jabalpur/ja2.png", alt: "Dhuandhar waterfall in Jabalpur" },
-      { src: "/travel/Jabalpur/ja3.png", alt: "Boat ride through the gorge in Jabalpur" },
+      { src: "/travel/Jabalpur/ja1.jpg", alt: "Marble rocks along the river in Jabalpur" },
+      { src: "/travel/Jabalpur/ja2.jpg", alt: "Dhuandhar waterfall in Jabalpur" },
+      { src: "/travel/Jabalpur/ja3.jpg", alt: "Boat ride through the gorge in Jabalpur" },
     ],
   },
   {
@@ -67,9 +67,9 @@ const trips = [
     place: "Nainital",
     note: "Ancient ruins, riverside towns, and deep roots.",
     images: [
-      { src: "/travel/nainital/na1.png", alt: "Ancient ruins in Nainital" },
-      { src: "/travel/nainital/na2.png", alt: "Riverside town scene in Nainital" },
-      { src: "/travel/nainital/na3.png", alt: "Temple complex in Nainital" },
+      { src: "/travel/nainital/na1.jpg", alt: "Ancient ruins in Nainital" },
+      { src: "/travel/nainital/na2.jpg", alt: "Riverside town scene in Nainital" },
+      { src: "/travel/nainital/na3.jpg", alt: "Temple complex in Nainital" },
     ],
   },
 ];
