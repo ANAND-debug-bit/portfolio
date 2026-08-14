@@ -272,7 +272,7 @@ const events: TimelineEventData[] = [
     title: "The Beginning",
     description: "I was born June 23rd, 2009, in New Delhi, India.",
     image: {
-      src: "/about/marquee/birth.JPG",
+      src: "/about/marquee/birth.jpeg",
       alt: "Newborn photo of Atharv",
     },
   },
