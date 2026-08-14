@@ -64,12 +64,12 @@ const trips = [
   },
   {
     num: "07",
-    place: "Bihar",
+    place: "Nainital",
     note: "Ancient ruins, riverside towns, and deep roots.",
     images: [
-      { src: "/travel/bihar/bi1.png", alt: "Ancient ruins in Bihar" },
-      { src: "/travel/bihar/bi2.png", alt: "Riverside town scene in Bihar" },
-      { src: "/travel/bihar/bi3.png", alt: "Temple complex in Bihar" },
+      { src: "/travel/nainital/na1.png", alt: "Ancient ruins in Nainital" },
+      { src: "/travel/nainital/na2.png", alt: "Riverside town scene in Nainital" },
+      { src: "/travel/nainital/na3.png", alt: "Temple complex in Nainital" },
     ],
   },
 ];
