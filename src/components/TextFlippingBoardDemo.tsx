@@ -3,6 +3,7 @@ import { TextFlippingBoard } from "./ui/text-flipping-board";
 
 const MESSAGES: string[] = [
   "STILL \nBUILDING \nAT 15",
+  "STILL \nBUILDING \nAT 17",
   "THIS SITE TOOK \nLONGER THAN IT \nSHOULD HAVE",
   "WOULD RATHER \nBUILD THAN \nSLEEP",
   "DESIGN \nMEETS \nCODE",
