@@ -15,7 +15,7 @@ const trips = [
   {
     num: "02",
     place: "Dehradun",
-    note: "Hill air, valley views, and a slower pace.",
+    note: "Hill air, valley views, and a slower pace...",
     images: [
       { src: "/travel/dehradun/de1.png", alt: "Valley view near Dehradun" },
       { src: "/travel/dehradun/de2.png", alt: "Forest road in Dehradun" },
