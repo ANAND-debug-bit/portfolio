@@ -64,6 +64,36 @@ const trips = [
   },
   {
     num: "07",
+    place: "Ujjain (MP)",
+    note: "Ancient temple city on the banks of the Shipra.",
+    images: [
+      { src: "https://i.pinimg.com/736x/01/ef/52/01ef527b654d18317c33f177f092296a.jpg", alt: "Mahakaleshwar Temple in Ujjain" },
+      { src: "https://i.pinimg.com/736x/05/37/19/053719a5dc4031468abf21ec3531b159.jpg", alt: "Ram Ghat on the Shipra river in Ujjain" },
+      { src: "https://i.pinimg.com/736x/15/85/05/1585053c2a3122b9155b5d17a051246e.jpg", alt: "Evening aarti at Shipra ghat in Ujjain" },
+    ],
+  },
+  {
+    num: "08",
+    place: "Kanpur (UP)",
+    note: "Industrial hub with colonial-era landmarks along the Ganges.",
+    images: [
+      { src: "https://i.pinimg.com/736x/0a/87/69/0a87699b5088c6424e72e27ff6830ca4.jpg", alt: "Ganga ghat in Kanpur" },
+      { src: "https://i.pinimg.com/736x/94/b4/e1/94b4e129c2e712d93378937e3b273cb1.jpg", alt: "JK Temple in Kanpur" },
+      { src: "https://i.pinimg.com/736x/2b/c6/bb/2bc6bbc39fe10c7c0ea93bb4d6ce6a9a.jpg", alt: "Allen Forest Zoo in Kanpur" },
+    ],
+  },
+  {
+    num: "09",
+    place: "Gwalior (MP)",
+    note: "Hilltop fort and palaces steeped in Rajput history.",
+    images: [
+      { src: "https://i.pinimg.com/736x/03/fd/82/03fd82d154407eabc55e521389373bbd.jpg", alt: "Gwalior Fort on the hilltop" },
+      { src: "https://i.pinimg.com/736x/63/2c/2b/632c2bb3d540faae5f113d22d7366643.jpg", alt: "Jai Vilas Palace in Gwalior" },
+      { src: "https://i.pinimg.com/736x/a9/63/d6/a963d62414d189be17a048df2df1d9ae.jpg", alt: "Man Mandir Palace architecture in Gwalior" },
+    ],
+  },
+  {
+    num: "10",
     place: "Nainital",
     note: "Ancient ruins, riverside towns, and deep roots.",
     images: [
