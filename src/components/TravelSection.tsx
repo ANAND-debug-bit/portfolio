@@ -69,7 +69,7 @@ const trips = [
     images: [
       { src: "https://i.pinimg.com/736x/71/4c/70/714c70663a455e7ccc343c6d07b52194.jpg", alt: "Ancient ruins in Nainital" },
       { src: "https://i.pinimg.com/736x/4e/0d/dd/4e0dddd2d84e1dd20d668f6ad720e831.jpg", alt: "Riverside town scene in Nainital" },
-      { src: "blob:https://gemini.google.com/590e089b-b492-4064-a23e-27d96c6acd9c", alt: "Temple complex in Nainital" },
+      { src: "https://i.pinimg.com/736x/67/f7/ca/67f7ca2b17e27869ea5ae9809b44f52b.jpg", alt: "Temple complex in Nainital" },
     ],
   },
 ];
