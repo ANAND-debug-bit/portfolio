@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 const socials = [
   { name: "Instagram", handle: "@v.a.j.r.a_07", url: "https://www.instagram.com/v.a.j.r.a_07/", icon: FaInstagram },
   { name: "X (Twitter)", handle: "@ATHARV_ANAND_", url: "https://x.com/ATHARV_ANAND_", icon: FaTwitter },
-  { name: "LinkedIn", handle: "Atharv Anand", url: "https://www.linkedin.com/in/atharv-anand-318716336/", icon: FaLinkedin },
+  { name: "LinkedIn", handle: "Atharv Anand", url: "https://www.linkedin.com/in/atharv-anand/", icon: FaLinkedin },
   { name: "GitHub", handle: "ANAND-debug-bit", url: "https://github.com/ANAND-debug-bit", icon: FaGithub }
 ];
 
