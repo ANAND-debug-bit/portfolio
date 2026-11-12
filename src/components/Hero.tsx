@@ -1,12 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import Hls from 'hls.js';
 import gsap from 'gsap';
 import { MousePointer2 } from 'lucide-react';
+import CosmicBackground from './CosmicBackground';
 
 const roles = ["Student", "Developer", "Founder"];
 
 export default function Hero({ isLoading }: { isLoading: boolean }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const greetingRef = useRef<HTMLSpanElement>(null);
   const greetingTextRef = useRef<HTMLSpanElement>(null);
@@ -14,36 +13,6 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
   const firstNameRef = useRef<HTMLSpanElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [roleIndex, setRoleIndex] = useState(0);
-
-  useEffect(() => {
-    // Handle Video
-    const video = videoRef.current;
-    if (!video) return;
-
-    const videoSrc = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
-
-    if (Hls.isSupported()) {
-      const hls = new Hls({
-        startLevel: -1, // Auto
-        maxBufferLength: 30,
-      });
-      hls.loadSource(videoSrc);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(e => console.log("Autoplay prevented:", e));
-      });
-
-      return () => {
-        hls.destroy();
-      };
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // Native HLS (Safari)
-      video.src = videoSrc;
-      video.addEventListener('loadedmetadata', () => {
-        video.play().catch(e => console.log("Autoplay prevented:", e));
-      });
-    }
-  }, []);
 
   useEffect(() => {
     // Handle Role Cycling
@@ -214,14 +183,7 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
     <section ref={sectionRef} className="relative w-full h-screen min-h-[600px] overflow-hidden bg-bg">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2"
-        />
+        <CosmicBackground />
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent" />
       </div>

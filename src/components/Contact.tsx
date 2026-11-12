@@ -1,6 +1,6 @@
-import { useEffect, useLayoutEffect, useRef } from 'react';
-import Hls from 'hls.js';
+import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
+import CosmicBackground from './CosmicBackground';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -8,32 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const byeHandRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Handle Video
-    const video = videoRef.current;
-    if (!video) return;
-
-    const videoSrc = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
-
-    if (Hls.isSupported()) {
-      const hls = new Hls({ startLevel: -1, maxBufferLength: 30 });
-      hls.loadSource(videoSrc);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(e => console.log("Autoplay prevented:", e));
-      });
-      return () => hls.destroy();
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = videoSrc;
-      video.addEventListener('loadedmetadata', () => {
-        video.play().catch(e => console.log("Autoplay prevented:", e));
-      });
-    }
-  }, []);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -113,14 +89,7 @@ export default function Contact() {
       
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1]"
-        />
+        <CosmicBackground className="scale-y-[-1]" />
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
         <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-bg to-transparent" />
       </div>
