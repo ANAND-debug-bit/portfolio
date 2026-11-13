@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -37,7 +37,16 @@ function ScrollToTop() {
   return null;
 }
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children, isLoading }: { children: React.ReactNode; isLoading: boolean }) {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const pathnameRef = useRef(pathname);
+  const isLoadingRef = useRef(isLoading);
+  const navigateRef = useRef(navigate);
+  pathnameRef.current = pathname;
+  isLoadingRef.current = isLoading;
+  navigateRef.current = navigate;
+
   useEffect(() => {
     // Initialize Lenis smooth scrolling
     const lenis = new Lenis({
@@ -57,6 +66,28 @@ function Layout({ children }: { children: React.ReactNode }) {
     // run on separate clocks, so pinned/scrubbed sections drift and keep
     // gliding after you stop scrolling.
     lenis.on('scroll', ScrollTrigger.update);
+
+    // Home only: arriving at the bottom by scrolling down opens About.
+    // Reads the latest route through refs so this does not rebuild Lenis.
+    let switched = false;
+    let movingDown = false;
+    const onReachEnd = (instance: { scroll: number; limit: number; direction: number }) => {
+      if (pathnameRef.current !== '/' || isLoadingRef.current) {
+        switched = false;
+        movingDown = false;
+        return;
+      }
+      if (switched) return;
+      if (instance.direction === 1) movingDown = true;
+      else if (instance.direction === -1) movingDown = false;
+      if (!movingDown) return;
+      if (instance.limit < 32) return;
+      if (instance.scroll < instance.limit - 2) return;
+      switched = true;
+      navigateRef.current('/about');
+    };
+    lenis.on('scroll', onReachEnd);
+
     const onTick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(onTick);
     gsap.ticker.lagSmoothing(0);
@@ -67,6 +98,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     return () => {
       gsap.ticker.remove(onTick);
       lenis.off('scroll', ScrollTrigger.update);
+      lenis.off('scroll', onReachEnd);
       (window as any).__lenis = null;
       lenis.destroy();
     };
@@ -93,7 +125,7 @@ export default function App() {
         <Seo />
         <ScrollToTop />
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-        <Layout>
+        <Layout isLoading={isLoading}>
           <Routes>
             <Route path="/" element={<Home isLoading={isLoading} />} />
             <Route path="/about" element={<About />} />
